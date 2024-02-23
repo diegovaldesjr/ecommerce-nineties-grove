@@ -1,5 +1,4 @@
 import "./globals.css";
-import { titleFont } from '@/config/fonts'
 
 export const metadata = {
   title: "Nineties Grove",
@@ -9,7 +8,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={titleFont.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

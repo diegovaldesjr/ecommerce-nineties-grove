@@ -1,8 +1,39 @@
+import { notFound } from "next/navigation";
+import { initialData } from "@/seed"
+import { titleFont } from "@/config/fonts";
+import { ColorSelector, QuantitySelector, SizeSelector } from "@/components";
 
-export default function() {
+const {products} = initialData
+
+export default function({params}) {
+  const {slug} = params
+  const product = initialData.products.find( product => product.slug === slug)
+
+  if (!product) {
+    notFound
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Product Page</h1>
-    </main>
+    <div className="mt-5 mb-20 grid md:grid-cols-3 gap-3">
+      <div className="col-span-1 md:col-span-2 bg-blue-100">
+      </div>
+
+      <div className="col-span-1 px-5">
+        <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>
+          {product.title}
+        </h1>
+        <p className="text-lg mb-5">${product.price}</p>
+        <SizeSelector availableSizes={product.sizes}/>
+        <ColorSelector colors={product.colors} />
+        <QuantitySelector quantity={1}/>
+        <button className="btn-primary my-5">
+          Agregar al carrito
+        </button>
+        <h3 className="font-bold text-sm">Descripción</h3>
+        <p className="font-light">
+          {product.description}
+        </p>
+      </div>
+    </div>
   );
 }
