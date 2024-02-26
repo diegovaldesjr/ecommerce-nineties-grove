@@ -19,10 +19,10 @@ export const ProductSlideshow = ({ images, title, className}) => {
   return (
     <div className={className}>
       <Swiper
-        // style={{
-        //   '--swiper-navigation-color': '#fff',
-        //   '--swiper-pagination-color': '#fff',
-        // }}
+        style={{
+          '--swiper-navigation-color': '#dc2626',
+          '--swiper-pagination-color': '#dc2626',
+        }}
         spaceBetween={10}
         navigation={true}
         thumbs={{ 
@@ -63,7 +63,7 @@ export const ProductSlideshow = ({ images, title, className}) => {
                 height= {300}
                 src={`/products/${image}`}
                 alt={title}
-                className='rounded-lg'
+                className='rounded-lg cursor-pointer'
               />
             </SwiperSlide>
           ))

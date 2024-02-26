@@ -18,45 +18,43 @@ export default function() {
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
         
-        <Title title='Carrito'/>
+        <Title title='TU CARRITO'/>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           
           {/* Carrito */}
           <div className="flex flex-col mt-5">
-            <span>Agregar más items</span>
-            <Link href="/" className="underline mb-5">
-              Continuar comprando
-            </Link>
+            <span className="mb-5">Los artículos en tu carrito no están reservados. Revisalos y termina el proceso de compra ahora para hacerte con ellos.</span>
+            <div className="w-full h-0.5 rounded bg-gray-200 mb-10" />
 
-          {
-            productsInCart.map( product => (
-              <div key={product.slug} className="flex mb-5">
-                <Image 
-                  src={`/products/${product.images[0]}`}
-                  width={100}
-                  height={100}
-                  alt={product.title}
-                  className="mr-5 rounded"
-                  style={{
-                    width: '100px',
-                    height: '100px'
-                  }}
-                  />
-
-                  <div>
-                    <p>{product.title}</p>
-                    <p>${product.price}</p>
-                    <QuantitySelector 
-                      quantity={3}
+            {
+              productsInCart.map( product => (
+                <div key={product.slug} className="flex mb-5">
+                  <Image 
+                    src={`/products/${product.images[0]}`}
+                    width={100}
+                    height={100}
+                    alt={product.title}
+                    className="mr-5 rounded"
+                    style={{
+                      width: '100px',
+                      height: '100px'
+                    }}
                     />
-                    <button className="underline mt-3">
-                      Remover
-                    </button>
-                  </div>
-              </div>
-            ))
-          }
+
+                    <div>
+                      <p>{product.title}</p>
+                      <p>${product.price}</p>
+                      <QuantitySelector 
+                        quantity={3}
+                      />
+                      <button className="underline mt-3">
+                        Remover
+                      </button>
+                    </div>
+                </div>
+              ))
+            }
           </div>
 
           {/* Checkout */}
@@ -73,8 +71,8 @@ export default function() {
               <span>Envio</span>
               <span className="text-right">$100</span>
 
-              <span className="mt-5 text-2xl">Total:</span>
-              <span className="mt-5 text-2xl text-right">100$</span>
+              <span className="mt-5 text-xl font-bold">Total</span>
+              <span className="mt-5 text-xl text-right font-bold">$100</span>
             </div>
 
             <div className="mt-5 mb-2 w-full">

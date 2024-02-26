@@ -21,10 +21,11 @@ export default function() {
           
           {/* Carrito */}
           <div className="flex flex-col mt-5">
-            <span>Ajustar elementos</span>
-            <Link href="/cart" className="underline mb-5">
-              Editar carrito
-            </Link>
+            <span className="mb-5">
+              Si quieres hacer un ajuste en tus productos puedes volver al carrito <Link href="/cart" className="underline">aqui</Link>.
+            </span>
+
+            <div className="w-full h-0.5 rounded bg-gray-200 mb-5" />
 
           {
             productsInCart.map( product => (
@@ -59,9 +60,7 @@ export default function() {
                 <p>Direccion larga bla bla</p>
               </div>
 
-              <div className="w-full h-0.5 rounded bg-gray-200 mb-5">
-
-              </div>
+              <div className="w-full h-0.5 rounded bg-gray-200 mb-5" />
 
               <h2 className="text-2xl mb-2">Resumen de orden</h2>
 
@@ -75,14 +74,14 @@ export default function() {
                 <span>Envio</span>
                 <span className="text-right">$100</span>
 
-                <span className="mt-5 text-2xl">Total:</span>
-                <span className="mt-5 text-2xl text-right">100$</span>
+                <span className="mt-5 text-xl font-bold">Total:</span>
+                <span className="mt-5 text-xl text-right font-bold">100$</span>
               </div>
 
               <div className="mt-5 mb-2 w-full">
                 <p className="mb-5">
                   <span className="text-xs">
-                    Al hacer click en <strong>completar orden</strong>, aceptas nuestros <a href="#" className="underline">términos y condiciones</a>.
+                    Al hacer click en <strong>completar orden</strong>, estas aceptando nuestros <a href="#" className="underline">términos y condiciones</a>.
                   </span>
                 </p>
                 <Link className="flex btn-primary justify-center" href="/orders/123">

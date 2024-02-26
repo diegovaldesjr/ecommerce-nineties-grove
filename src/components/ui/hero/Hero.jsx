@@ -1,6 +1,6 @@
-export const Hero = () => {
+export const Hero = ({className}) => {
   return (
-    <div className="relative mb-8">
+    <div className={`relative ${className}`}>
       <img
         src={`/imgs/hero.jpg`}
         className="absolute object-cover w-full h-full"
@@ -10,7 +10,7 @@ export const Hero = () => {
         <div className="mx-auto max-w-xl text-center">
           <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
             Understand User Flow.
-            <strong className="font-extrabold text-red-700 sm:block"> Increase Conversion. </strong>
+            <strong className="font-extrabold text-red-600 sm:block"> Increase Conversion. </strong>
           </h1>
 
           <p className="mt-4 sm:text-xl/relaxed text-white">
