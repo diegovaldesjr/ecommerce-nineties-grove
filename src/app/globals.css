@@ -57,3 +57,22 @@ body {
 .btn-secondary {
   @apply bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded transition-all;
 }
+
+.marquee__content {
+  display: flex;
+  animation: scroll 10s linear infinite;
+}
+
+.marquee__item {
+  flex-shrink: 0;
+  padding: 0 5px;
+}
+
+@keyframes scroll {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translate(-100%);
+  }
+}

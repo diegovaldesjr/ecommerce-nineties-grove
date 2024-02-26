@@ -6,7 +6,7 @@ export const Hero = ({className}) => {
         className="absolute object-cover w-full h-full"
         alt=""
       />
-      <div className="relative bg-gray-900 bg-opacity-75 w-full px-4 py-16 lg:flex lg:h-screen lg:items-center">
+      <div className="relative bg-gray-900 bg-opacity-75 w-full px-4 py-32 lg:flex lg:h-[750px] lg:items-center">
         <div className="mx-auto max-w-xl text-center">
           <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
             Understand User Flow.
