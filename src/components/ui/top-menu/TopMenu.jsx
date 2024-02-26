@@ -4,10 +4,10 @@ import { IoCartOutline, IoPersonOutline } from 'react-icons/io5'
 
 export const TopMenu = () => {
   return (
-    <nav className="flex px-5 py-8 justify-between items-center w-full">
+    <nav className="flex px-5 py-8 justify-between items-center w-full text-white bg-slate-900">
         <div>
             <Link href="/">
-                <span className={`${titleFont.className} antialiased font-bold`}>Nineties Grove</span>
+                <span className={`${titleFont.className} antialiased font-bold text-xl`}>Nineties Grove</span>
             </Link>
         </div>
 
