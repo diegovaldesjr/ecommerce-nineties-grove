@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 
+//TODO
 export const ColorSelector = ({colors}) => {
     const [selectedColor, setSelectedColor] = useState(colors[0])
     return (
