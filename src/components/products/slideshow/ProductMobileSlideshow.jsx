@@ -25,10 +25,10 @@ export const ProductMobileSlideshow = ({ images, title, className}) => {
       >
         {
           images.map(image => (
-            <SwiperSlide key={image}>
+            <SwiperSlide key={image.name}>
               <Image
-                src={`/products/${image}`}
-                alt={title}
+                src={image.src}
+                alt={image.alt}
                 priority
                 layout='fill'
                 objectFit='contain'

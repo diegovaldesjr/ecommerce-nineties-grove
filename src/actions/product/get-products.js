@@ -16,3 +16,18 @@ export const getProductsByDrop = async() => {
 
   return wooCommerceProducts.data
 }
+
+export const getProductBySlug = async(slug) => {
+  const endpoint = 'products'
+  const params = `slug=${slug}`
+  
+  const wooCommerceProducts = await fetchWooCommerceProducts(endpoint, params).catch((error) =>
+    console.error(error)
+  );
+
+  if (!wooCommerceProducts) {
+    return null
+  }
+
+  return wooCommerceProducts.data[0]
+}

@@ -32,10 +32,10 @@ export const ProductSlideshow = ({ images, title, className}) => {
       >
         {
           images.map(image => (
-            <SwiperSlide key={image}>
+            <SwiperSlide key={image.name}>
               <Image
-                src={`/products/${image}`}
-                alt={title}
+                src={image.src}
+                alt={image.alt}
                 className='rounded-lg'
                 priority
                 layout='fill'
@@ -57,12 +57,12 @@ export const ProductSlideshow = ({ images, title, className}) => {
       >
         {
           images.map(image => (
-            <SwiperSlide key={image}>
+            <SwiperSlide key={image.name}>
               <Image
                 width= {304}
                 height= {300}
-                src={`/products/${image}`}
-                alt={title}
+                src={image.src}
+                alt={image.alt}
                 className='rounded-lg cursor-pointer'
               />
             </SwiperSlide>

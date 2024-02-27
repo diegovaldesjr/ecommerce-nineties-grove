@@ -20,6 +20,7 @@ export default function Home() {
 
   const getProducts = async() => {
     const allProducts = await getProductsByDrop()
+    console.log(allProducts)
     setProducts(allProducts)
     setIsLoading(false)
   }

@@ -12,9 +12,12 @@ export const SizeSelector = ({availableSizes, selectedSize = null}) => {
               key={size} 
               className={
                 clsx(
-                  "mx-2 hover:underline text-lg",
+                  "mx-2 border-4 px-4 py-2 hover:border-black text-lg",
                   {
-                    'underline': size === selectedSize
+                    'border-black': size === selectedSize
+                  },
+                  {
+                    'border-white': size !== selectedSize
                   }
                 )
               }

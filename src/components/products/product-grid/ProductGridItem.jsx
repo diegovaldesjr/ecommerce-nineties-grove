@@ -6,18 +6,24 @@ import { useState } from "react"
 
 export const ProductGridItem = ({product}) => {
     const [displayImage, setDisplayImage] = useState(product.images[0].src)
+    const [displayImageAlt, setDisplayImageAlt] = useState(product.images[0].alt)
+
+    const setImage = image => {
+        setDisplayImage(image.src)
+        setDisplayImageAlt(image.alt)
+    }
 
   return (
     <div className="rounded-md overflow-hidden fade-in">
         <Link href={`/product/${product.slug}`}>
             <Image 
                 src={displayImage}
-                alt={product.name}
+                alt={displayImageAlt}
                 className="w-full object-cover rounded"
                 width={ 500 }
                 height={ 500 }
-                onMouseEnter={() => setDisplayImage(product.images[1].src)}
-                onMouseLeave={() => setDisplayImage(product.images[0].src)}
+                onMouseEnter={() => setImage(product.images[1])}
+                onMouseLeave={() => setImage(product.images[0])}
                 priority
             />
         </Link>

@@ -17,7 +17,7 @@ export const QuantitySelector = ({quantity}) => {
         <IoRemoveCircleOutline size={30} />
       </button>
 
-      <span className="w-20 mx-3 px-5 bg-gray-100 text-center">
+      <span className="w-20 mx-3 px-5 border-2 border-black bg-gray-100 text-center">
         {count}
         </span>
 
