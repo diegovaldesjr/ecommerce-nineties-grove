@@ -34,12 +34,13 @@ export const ProductSlideshow = ({ images, title, className}) => {
           images.map(image => (
             <SwiperSlide key={image.name}>
               <Image
+                width={ 1024 }
+                height={ 800 }
                 src={image.src}
                 alt={image.alt}
                 className='rounded-lg'
+                style={{objectFit:"contain"}}
                 priority
-                layout='fill'
-                objectFit='contain'
               />
             </SwiperSlide>
           ))
@@ -59,11 +60,11 @@ export const ProductSlideshow = ({ images, title, className}) => {
           images.map(image => (
             <SwiperSlide key={image.name}>
               <Image
-                width= {304}
+                width= {300}
                 height= {300}
                 src={image.src}
                 alt={image.alt}
-                className='rounded-lg cursor-pointer'
+                className='rounded-lg cursor-pointer object-fill'
               />
             </SwiperSlide>
           ))

@@ -27,11 +27,12 @@ export const ProductMobileSlideshow = ({ images, title, className}) => {
           images.map(image => (
             <SwiperSlide key={image.name}>
               <Image
+                width={ 600 }
+                height={ 500 }
                 src={image.src}
                 alt={image.alt}
                 priority
-                layout='fill'
-                objectFit='contain'
+                style={{objectFit:"contain"}}
               />
             </SwiperSlide>
           ))
