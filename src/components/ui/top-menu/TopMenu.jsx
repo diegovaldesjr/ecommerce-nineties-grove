@@ -27,11 +27,14 @@ export const TopMenu = () => {
             <Link href="/auth/login" className="mx-2">
                 <IoPersonOutline className="w-6 h-6"/>
             </Link>
-            <Link href="/cart" className="mx-2">
+            <Link 
+                href={ (totalItemsInCart === 0) && loaded ? "/empty" : "/cart"} 
+                className="mx-2"
+            >
                 <div className="relative">
                     {
                         (loaded && totalItemsInCart > 0) && (
-                            <span className="absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-red-600 text-white">
+                            <span className="fade-in absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-red-600 text-white">
                                 {totalItemsInCart}
                             </span>
                         )

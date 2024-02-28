@@ -1,6 +1,6 @@
 'use server'
 
-import { fetchWooCommerceProducts } from "../../../utils/wooCommerceApi";
+import { fetchWooCommerceProducts } from "../../../utils";
 
 export const getProductsByDrop = async() => {
   const endpoint = 'products'
