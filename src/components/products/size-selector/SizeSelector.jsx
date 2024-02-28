@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 
-export const SizeSelector = ({availableSizes, selectedSize = null}) => {
+export const SizeSelector = ({availableSizes, selectedSize = null, onSizeChanged}) => {
+
   return (
     <div className="my-5">
       <h3 className="font-bold mb-4">Tallas disponibles</h3>
@@ -9,7 +10,8 @@ export const SizeSelector = ({availableSizes, selectedSize = null}) => {
         {
           availableSizes.map(size => (
             <button 
-              key={size} 
+              key={size}
+              onClick={ () => onSizeChanged(size)}
               className={
                 clsx(
                   "mx-2 border-4 px-4 py-2 hover:border-black text-lg",

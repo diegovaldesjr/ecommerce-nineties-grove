@@ -20,3 +20,12 @@ export async function fetchWooCommerceProducts(endpoint, params) {
     throw new Error(error);
   }
 }
+
+export async function createWooCommerceOrder(data) {
+  try {
+    const response = await api.post("orders", data);
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+}

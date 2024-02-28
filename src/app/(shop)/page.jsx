@@ -7,9 +7,6 @@ import { Hero, Marquee, ProductGrid, Spinner, Title } from "@/components";
 import { useEffect, useState } from "react";
 import { IoEarth } from "react-icons/io5";
 
-// import { initialData } from "@/seed"
-// const {products} = initialData
-
 export default function Home() {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)

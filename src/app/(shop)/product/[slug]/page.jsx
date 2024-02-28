@@ -4,19 +4,15 @@ import { useEffect, useState } from "react";
 
 import { notFound } from "next/navigation";
 import { titleFont } from "@/config/fonts";
-import { ColorSelector, QuantitySelector, ProductSlideshow, SizeSelector, ProductMobileSlideshow, Spinner } from "@/components";
+import { ProductSlideshow, ProductMobileSlideshow, Spinner } from "@/components";
 import { getProductBySlug } from "@/actions";
-
-// import { initialData } from "@/seed"
-// const {products} = initialData
+import { AddToCart } from "./ui/AddToCart";
 
 export default function({params}) {
   const {slug} = params
-  // const product = initialData.products.find( product => product.slug === slug)
 
   const [product, setProduct] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [sizes, setSizes] = useState([])
 
   useEffect(() =>{
     getProduct()
@@ -27,9 +23,6 @@ export default function({params}) {
     if (!productBySlug) notFound
 
     setProduct(productBySlug)
-    const sizesAtt = productBySlug.attributes.find( (attribute) => attribute.name === 'sizes')
-
-    if (sizesAtt) setSizes(sizesAtt.options)
     setIsLoading(false)
   }
 
@@ -76,11 +69,9 @@ export default function({params}) {
               </h1>
               <p className="text-lg font-bold mb-0">${product.price}</p>
               <p className="text-sm font-semibold mb-5">Los gastos de envío se calculan en la pantalla de pagos.</p>
-              <SizeSelector availableSizes={sizes} selectedSize={sizes[0]}/>
-              {/* <ColorSelector colors={product.colors} /> */}
-              <button className="btn-primary mb-8">
-                Agregar al carrito
-              </button>
+              
+              <AddToCart product={product}/>
+
               <h3 className="font-bold mb-2">Descripción</h3>
               <p className="font-light">
                 {removeTags(product.description)}
