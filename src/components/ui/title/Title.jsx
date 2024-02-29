@@ -1,10 +1,15 @@
 import { titleFont } from "@/config/fonts"
 
-export const Title = ({title, subtitle, className}) => {
+export const Title = ({title, subtitle, underline = false, className}) => {
   return (
-    <div className={`mt-3 ${className}`}>
-      <h1 className={`${titleFont.className} antialiased text-4xl font-semibold my-10`}>
+    <div className={`${className}`}>
+      <h1 className={`${titleFont.className} antialiased text-4xl font-semibold`}>
         {title}
+        {
+          underline && (
+            <div className="w-full h-1.5 bg-red-600 mt-2 mb-10" />
+          )
+        }
       </h1>
 
       {

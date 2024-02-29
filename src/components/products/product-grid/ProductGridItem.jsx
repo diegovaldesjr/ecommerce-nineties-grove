@@ -15,7 +15,7 @@ export const ProductGridItem = ({product}) => {
 
   return (
     <div className="rounded-md overflow-hidden fade-in">
-        <Link href={`/product/${product.slug}`}>
+        <Link href={`/product/${product.slug}`} scroll={true}>
             <Image 
                 src={displayImage}
                 alt={displayImageAlt}
@@ -29,10 +29,10 @@ export const ProductGridItem = ({product}) => {
         </Link>
 
         <div className="p-4 flex flex-col">
-            <Link href={`/product/${product.slug}`} className="hover:text-blue-600">
+            <Link href={`/product/${product.slug}`} className="text-xl font-bold hover:text-red-600">
                 {product.name}
             </Link>
-            <span className="font-bold">${product.price}</span>
+            <span className="font-bold text-xl">${product.price}</span>
         </div>
     </div>
   )

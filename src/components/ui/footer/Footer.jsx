@@ -17,11 +17,11 @@ export const Footer = () => {
       </div>
       
       <div className="flex mt-4 md:mt-0">
-        <a href="#" className="mr-2">
-          <IoLogoInstagram size={24} />
+        <a href="#" className="mr-3">
+          <IoLogoInstagram size={28} className="hover:text-red-600"/>
         </a>
         <a href="#">
-          <IoLogoTiktok size={24} />
+          <IoLogoTiktok size={28} className="hover:text-red-600"/>
         </a>
       </div>
     </div>
