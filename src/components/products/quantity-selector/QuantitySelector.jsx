@@ -1,6 +1,6 @@
 import { IoAddCircleOutline, IoRemoveCircleOutline } from "react-icons/io5"
 
-export const QuantitySelector = ({quantity, onQuantityChanged}) => {
+export const QuantitySelector = ({quantity, onQuantityChanged, className}) => {
 
     const onValueChanged = (value) => {
         if (quantity + value < 1 ) return
@@ -8,7 +8,7 @@ export const QuantitySelector = ({quantity, onQuantityChanged}) => {
     }
     
   return (
-    <div className="flex">
+    <div className={`flex ${className}`}>
       <button onClick={() => onValueChanged(-1)}>
         <IoRemoveCircleOutline size={30} />
       </button>

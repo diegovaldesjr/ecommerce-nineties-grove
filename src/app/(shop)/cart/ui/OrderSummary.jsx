@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { useCartStore } from "../../../../../store"
 import { currencyFormat } from "../../../../../utils/currencyFormat"
+import { SkeletonText } from "@/components"
+import Link from "next/link"
 
 export const OrderSummary = () => {
   const {subTotal, itemsInCart} = useCartStore(state => state.getSummaryInformation())
@@ -13,7 +15,7 @@ export const OrderSummary = () => {
   },[])
 
   if (!loaded) {
-    return <p>Loading</p>
+    return <SkeletonText />
   }
 
   return (
@@ -32,6 +34,12 @@ export const OrderSummary = () => {
 
         <span className="mt-5 text-xl font-bold">Total</span>
         <span className="mt-5 text-xl text-right font-bold">{currencyFormat(subTotal)}</span>
+      </div>
+
+      <div className="mt-5 mb-2 w-full">
+        <Link className="flex btn-primary justify-center" href="/checkout/address">
+          Checkout
+        </Link>
       </div>
     </>
   )

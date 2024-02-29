@@ -34,7 +34,10 @@ export const AddToCart = ({product}) => {
   useEffect(() =>{
     const sizesAtt = product.attributes.find( (attribute) => attribute.name === 'sizes')
     
-    if (sizesAtt) setSizes(sizesAtt.options)
+    if (sizesAtt) {
+      setSizes(sizesAtt.options)
+      setSize(sizesAtt.options[0])
+    }
   }, [])
 
   return (
