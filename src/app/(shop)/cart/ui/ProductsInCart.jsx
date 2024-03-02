@@ -2,10 +2,10 @@
 
 import { QuantitySelector, SkeletonText } from "@/components"
 import Image from "next/image"
-import { useCartStore } from "../../../../../store"
+import { useCartStore } from "@/store"
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { currencyFormat } from "../../../../../utils/currencyFormat"
+import { currencyFormat } from "@/utils/currencyFormat"
 
 export const ProductsInCart = () => {
   const removeProduct = useCartStore(state => state.removeProduct)

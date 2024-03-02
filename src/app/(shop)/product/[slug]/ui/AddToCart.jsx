@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { SizeSelector } from "@/components"
-import { useCartStore } from "../../../../../../store"
+import { useCartStore } from "@/store"
 
 export const AddToCart = ({product}) => {
   const addProductToCart = useCartStore(state => state.addProductToCart)

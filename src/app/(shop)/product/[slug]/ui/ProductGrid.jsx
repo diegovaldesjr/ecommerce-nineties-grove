@@ -3,7 +3,7 @@
 import { getProductBySlug } from "@/actions"
 import { ProductMobileSlideshow, ProductSlideshow, SkeletonText, Spinner } from "@/components"
 import { useEffect, useState } from "react"
-import { currencyFormat } from "../../../../../../utils/currencyFormat"
+import { currencyFormat } from "@/utils/currencyFormat"
 import { AddToCart } from "./AddToCart"
 import { titleFont } from "@/config/fonts"
 

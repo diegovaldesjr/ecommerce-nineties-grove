@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { useCartStore } from "../../../../../store"
-import { currencyFormat } from "../../../../../utils/currencyFormat"
+import { useCartStore } from "@/store"
+import { currencyFormat } from "@/utils/currencyFormat"
 import { SkeletonText } from "@/components"
 import Link from "next/link"
 
