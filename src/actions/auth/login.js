@@ -5,7 +5,6 @@ import { AuthError } from 'next-auth';
  
 export async function authenticate(prevState, formData,) {
   try {
-    console.log({formData: Object.fromEntries(formData)})
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {

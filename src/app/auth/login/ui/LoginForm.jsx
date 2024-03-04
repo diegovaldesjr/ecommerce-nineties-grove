@@ -1,11 +1,13 @@
 'use client'
 
-import { useFormState } from 'react-dom'
+import { useFormState, useFormStatus } from 'react-dom'
 import { authenticate } from "@/actions";
 import Link from "next/link"
+import clsx from 'clsx';
 
 export const LoginForm = () => {
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+  const [state, dispatch] = useFormState(authenticate, undefined);
+  console.log(state)
 
   return (
     <form action={dispatch} className="flex flex-col">
@@ -20,10 +22,15 @@ export const LoginForm = () => {
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="password" name="password" />
 
-      <button
-        className="btn-primary" type='submit'>
-        Ingresar
-      </button>
+      <div className="flex h-8 items-end space-x-1" aria-live='polite' aria-atomic="true">
+        {state === 'Invalid credentials.' && (
+          <div className="mb-2">
+            <p className="text-sm text-red-500">Correo o contraseña incorrectos.</p>
+          </div>
+        )}
+      </div>
+
+      <LoginButton />
 
       {/* divisor line */ }
       <div className="flex items-center my-5">
@@ -40,4 +47,23 @@ export const LoginForm = () => {
 
       </form>
   )
+}
+
+function LoginButton() {
+  const { pending } = useFormStatus();
+ 
+  return (
+    <button 
+      className={
+        clsx({
+          "btn-primary": !pending,
+          "btn-disabled": pending
+        })
+      } 
+      disabled={pending}
+      type='submit'
+    >
+      Ingresar
+    </button>
+  );
 }
