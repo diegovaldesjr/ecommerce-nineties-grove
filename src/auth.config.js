@@ -33,6 +33,18 @@ export const authConfig = {
     signIn: 'auth/login',
     newUser: 'auth/new-account'
   },
+  callbacks: {
+    jwt({token, user}) {
+      if (user) {
+        token.data = user
+      }
+      return token
+    },
+    session({session, token, user}) {
+      session.user = token.data
+      return session
+    }
+  },
   providers: [
     Credentials({
       async authorize(credentials) {
