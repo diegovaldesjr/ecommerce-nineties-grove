@@ -3,13 +3,16 @@
 import { titleFont } from "@/config/fonts"
 import Link from "next/link"
 import { IoCartOutline, IoPersonOutline } from 'react-icons/io5'
-import { useCartStore } from "../../../store"
+import { useCartStore } from "@/store"
 import { useEffect, useState } from "react"
+import { useSession } from "next-auth/react"
 
 export const TopMenu = () => {
     const totalItemsInCart = useCartStore( state => state.getTotalItems())
-
     const [loaded, setLoaded] = useState(false)
+
+    const {data: session} = useSession()
+    const isAuthenticated = !!session?.user
 
     useEffect(() => {
         setLoaded(true)
@@ -24,7 +27,7 @@ export const TopMenu = () => {
         </div>
 
         <div className="flex items-center">
-            <Link href="/auth/login" className="mx-2">
+            <Link href={isAuthenticated ? '/profile' : '/auth/login'} className="mx-2">
                 <IoPersonOutline className="w-6 h-6"/>
             </Link>
             <Link 

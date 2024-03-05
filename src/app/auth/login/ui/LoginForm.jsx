@@ -4,10 +4,17 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { authenticate } from "@/actions";
 import Link from "next/link"
 import clsx from 'clsx';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const LoginForm = () => {
   const [state, dispatch] = useFormState(authenticate, undefined);
-  console.log(state)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (state === 'Success')
+      router.replace('/')
+  }, [state])
 
   return (
     <form action={dispatch} className="flex flex-col">
