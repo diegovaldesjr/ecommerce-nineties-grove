@@ -39,7 +39,7 @@ export const registerUser = async(name, lastName, email, password) => {
       message: 'Usuario creado.'
     }
   } catch(error){
-    console.log(error)
+    console.error(error)
     return {
       ok: false,
       message: 'Correo ya registrado.'

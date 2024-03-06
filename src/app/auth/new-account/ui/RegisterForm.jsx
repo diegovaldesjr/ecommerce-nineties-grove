@@ -2,23 +2,28 @@
 import { registerUser } from "@/actions"
 import clsx from "clsx"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export const RegisterForm = () => {
+  const router = useRouter()
   const [errorMessage, setErrorMessage] = useState('')
+  const [pending, setPending] = useState(false)
   const {register, handleSubmit, formState: {errors}} = useForm()
 
   const onSubmit = async(data) => {
     setErrorMessage('')
+    setPending(true)
     const {name, lastName, email, password} = data
     const res = await registerUser(name, lastName, email, password)
     
     if (!res.ok) {
       setErrorMessage(res.message)
+      setPending(false)
+      return
     }
-
-    console.log(res)
+    router.replace('/auth/login')
   }
 
   return (
@@ -82,7 +87,13 @@ export const RegisterForm = () => {
 
       <button
         type='submit'
-        className="btn-primary"
+        className={
+          clsx({
+            "btn-primary": !pending,
+            "btn-disabled": pending
+          })
+        }
+        disabled={pending}
       >
         Crear cuenta
       </button>
