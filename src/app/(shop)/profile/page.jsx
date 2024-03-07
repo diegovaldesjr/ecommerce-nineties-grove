@@ -11,7 +11,7 @@ export default async function() {
   }
 
   return (
-    <div>
+    <div className="px-10">
       <Title title="Perfil" />
       <pre>
         {

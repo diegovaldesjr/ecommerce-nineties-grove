@@ -12,7 +12,8 @@ export const useAddressStore = create()(
         postalCode: '',
         city: '',
         country: '',
-        phone: '',
+        state: '',
+        phone: ''
       },
 
       setAddress: (address) => {

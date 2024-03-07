@@ -1,7 +1,7 @@
 export const revalidate = 604800
 
 import { Hero, Marquee, ProductGrid, Title } from "@/components";
-import { IoEarth } from "react-icons/io5";
+// import { IoEarth } from "react-icons/io5";
 
 export default function Home() {
   return (

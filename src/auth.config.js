@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import { z } from 'zod'
-import { getCustomerInfo } from './actions'
+import { getCustomerLogin } from './actions'
 
 const getJWTUser = async (email, password) => {
   const url = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/?rest_route=/jwt-auth/v1/auth`
@@ -59,7 +59,7 @@ export const authConfig = {
         //Validar usuario
         const userJWT = await getJWTUser(email, password)
         if (!userJWT) return null
-        const user = await getCustomerInfo(userJWT)
+        const user = await getCustomerLogin(userJWT)
         
         //retornar info de usuario
         const { role, username, avatar_url, meta_data, _links, is_paying_customer, ...rest } = user

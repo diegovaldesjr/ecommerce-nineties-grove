@@ -21,6 +21,7 @@ export async function fetchWooCommerceProducts(endpoint, params) {
   }
 }
 
+// Customer
 export async function createWooCommerceCustomer(data) {
   try {
     const response = await api.post("customers", data);
@@ -30,6 +31,16 @@ export async function createWooCommerceCustomer(data) {
   }
 }
 
+export async function updateWooCommerceCustomer(id, data) {
+  try {
+    const response = await api.put(`customers/${id}`, data);
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+// Orders
 export async function createWooCommerceOrder(data) {
   try {
     const response = await api.post("orders", data);

@@ -1,18 +1,25 @@
 'use client'
 
+import { setCustomerAddress } from "@/actions"
 import { countries } from "@/seed/seed-countries"
 import { useAddressStore } from "@/store"
 import clsx from "clsx"
+import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 
-export const AddressForm = () => {
+export const AddressForm = ({customerAddress = {}}) => {
   const router = useRouter();
   const {handleSubmit, register, formState: {isValid}, reset} = useForm({
     defaultValues: {
-      //Leer de datos customer
+      ...customerAddress,
+      rememberAddress: false
     }
+  })
+
+  const { data: session } = useSession({
+    required: true
   })
 
   const setAddress = useAddressStore(state => state.setAddress)
@@ -24,9 +31,13 @@ export const AddressForm = () => {
     }
   }, [])
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     const {rememberAddress, ...addressData} = data
     setAddress(addressData)
+
+    if (rememberAddress) {
+      await setCustomerAddress(session.user.id, addressData)
+    }
 
     router.push('/checkout');
   }
@@ -71,24 +82,6 @@ export const AddressForm = () => {
       </div>
 
       <div className="flex flex-col mb-2">
-        <span>Código postal</span>
-        <input 
-          type="text" 
-          className="p-2 border rounded-md bg-gray-200"
-          {... register('postalCode', {required: true})}
-        />
-      </div>
-
-      <div className="flex flex-col mb-2">
-        <span>Ciudad</span>
-        <input 
-          type="text" 
-          className="p-2 border rounded-md bg-gray-200"
-          {... register('city', {required: true})}
-        />
-      </div>
-
-      <div className="flex flex-col mb-2">
         <span>País</span>
         <select 
           className="p-2 border rounded-md bg-gray-200"
@@ -101,6 +94,33 @@ export const AddressForm = () => {
             ))
           }
         </select>
+      </div>
+
+      <div className="flex flex-col mb-2">
+        <span>Ciudad</span>
+        <input 
+          type="text" 
+          className="p-2 border rounded-md bg-gray-200"
+          {... register('city', {required: true})}
+        />
+      </div>
+
+      <div className="flex flex-col mb-2">
+        <span>Estado o provincia</span>
+        <input 
+          type="text" 
+          className="p-2 border rounded-md bg-gray-200"
+          {... register('state', {required: true})}
+        />
+      </div>
+
+      <div className="flex flex-col mb-2">
+        <span>Código postal</span>
+        <input 
+          type="text" 
+          className="p-2 border rounded-md bg-gray-200"
+          {... register('postalCode', {required: true})}
+        />
       </div>
 
       <div className="flex flex-col mb-2">
