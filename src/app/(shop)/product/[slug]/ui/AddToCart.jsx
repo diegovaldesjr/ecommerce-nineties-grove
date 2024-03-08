@@ -1,14 +1,15 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { SizeSelector } from "@/components"
 import { useCartStore } from "@/store"
 
 export const AddToCart = ({product}) => {
   const addProductToCart = useCartStore(state => state.addProductToCart)
 
-  const [sizes, setSizes] = useState([])
-  const [size, setSize] = useState()
+  const sizes = (product.attributes.find( (attribute) => attribute.name === 'sizes'))?.options
+  
+  const [size, setSize] = useState(sizes[0])
   const [posted, setPosted] = useState(false)
   // const [quantity, setQuantity] = useState(1)
 
@@ -30,15 +31,6 @@ export const AddToCart = ({product}) => {
     setPosted(false)
     setSize(undefined)
   }
-
-  useEffect(() =>{
-    const sizesAtt = product.attributes.find( (attribute) => attribute.name === 'sizes')
-    
-    if (sizesAtt) {
-      setSizes(sizesAtt.options)
-      setSize(sizesAtt.options[0])
-    }
-  }, [])
 
   return (
     <>

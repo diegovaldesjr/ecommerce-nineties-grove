@@ -1,6 +1,9 @@
 import { Metadata } from "next";
-import { ProductGrid } from "./ui/ProductGrid";
 import { getProductBySlug } from "@/actions";
+import { ProductMobileSlideshow, ProductSlideshow } from "@/components";
+import { AddToCart } from "./ui/AddToCart";
+import { titleFont } from "@/config/fonts";
+import { currencyFormat } from "@/utils/currencyFormat";
 
 export async function generateMetadata( { params }, parent ) {
   // read route params
@@ -23,12 +26,39 @@ export async function generateMetadata( { params }, parent ) {
   }
 }
 
-export default function({params}) {
-  const {slug} = params
+const removeTags = (str) => {
+  return str.replace(/(<([^>]+)>)/gi, "")
+}
 
+export default async function({params}) {
+  const {slug} = params
+  const product = await getProductBySlug(slug)
+  
   return (
-    <>
-      <ProductGrid slug={slug} />
-    </>
-  );
+    <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
+
+      <div className="col-span-1 md:col-span-2">
+        <ProductMobileSlideshow images={product.images} title={product.name} className="block md:hidden"/>
+        
+        {/* Desktop Slideshow */}
+        <ProductSlideshow images={product.images} title={product.name} className="hidden md:block"/>
+      </div>
+
+      <div className="col-span-1 px-5">
+        <h1 className={`${titleFont.className} antialiased font-bold text-4xl mt-16 mb-2`}>
+          {product.name}
+        </h1>
+        <p className="text-lg font-bold mb-0">{currencyFormat(product.price)}</p>
+        <p className="text-sm font-semibold mb-5">Los gastos de envío se calculan en la pantalla de pagos.</p>
+        
+        <AddToCart product={product}/>
+
+        <h3 className="font-bold mb-2">Descripción</h3>
+        <p className="font-light">
+          {removeTags(product.description)}
+        </p>
+      </div>
+
+    </div>
+  )
 }
