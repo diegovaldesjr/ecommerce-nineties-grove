@@ -1,33 +1,41 @@
 'use server'
 
-import { fetchWooCommerceProducts } from "@/utils";
+import { getFetchWooCommerce } from "@/utils";
 
 export const getProductsByDrop = async() => {
-  const endpoint = 'products'
-  const params = `category=${process.env.DROP1_CATEGORY_ID}`
+  try {
+    const endpoint = 'products'
+    const params = `category=${process.env.DROP1_CATEGORY_ID}`
+    
+    const wooCommerceProducts = await getFetchWooCommerce(endpoint, params).catch((error) =>
+      console.error(error)
+    );
   
-  const wooCommerceProducts = await fetchWooCommerceProducts(endpoint, params).catch((error) =>
-    console.error(error)
-  );
-
-  if (!wooCommerceProducts) {
-    return null
+    if (!wooCommerceProducts) {
+      return null
+    }
+  
+    return wooCommerceProducts.data 
+  } catch (error) {
+    throw new Error (error.message)
   }
-
-  return wooCommerceProducts.data
 }
 
 export const getProductBySlug = async(slug) => {
-  const endpoint = 'products'
-  const params = `slug=${slug}`
+  try {
+    const endpoint = 'products'
+    const params = `slug=${slug}`
+    
+    const wooCommerceProducts = await getFetchWooCommerce(endpoint, params).catch((error) =>
+      console.error(error)
+    );
   
-  const wooCommerceProducts = await fetchWooCommerceProducts(endpoint, params).catch((error) =>
-    console.error(error)
-  );
-
-  if (!wooCommerceProducts) {
-    return null
+    if (!wooCommerceProducts) {
+      return null
+    }
+  
+    return wooCommerceProducts.data[0] 
+  } catch (error) {
+    throw new Error (error.message)
   }
-
-  return wooCommerceProducts.data[0]
 }

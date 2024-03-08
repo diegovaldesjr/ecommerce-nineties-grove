@@ -3,7 +3,13 @@ import { Title } from '@/components';
 import Link from 'next/link';
 import { IoCardOutline } from 'react-icons/io5';
 
-export default function() {
+export default function({params}) {
+  const {id} = params
+
+  //Llamar el server action
+
+  //Verificar
+
   return (
     <>
       <Title title="Orders" />

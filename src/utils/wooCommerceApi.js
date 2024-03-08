@@ -9,7 +9,7 @@ const api = new WooCommerceRestApi({
 });
 
 // fetch all products from WooCommerce //
-export async function fetchWooCommerceProducts(endpoint, params) {
+export async function getFetchWooCommerce(endpoint, params) {
   if (params)
     endpoint = `${endpoint}?${params}`
 

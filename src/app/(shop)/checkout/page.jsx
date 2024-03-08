@@ -1,12 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { Title } from "@/components";
 import { ProductsInCart } from "./(checkout)/ui/ProductsInCart";
 import { PlaceOrder } from "./(checkout)/ui/PlaceOrder";
-
-const productsInCart = [
-]
 
 export default function() {
   return (

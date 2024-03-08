@@ -1,35 +1,39 @@
 'use server'
 
-import { fetchWooCommerceProducts } from "@/utils";
+import { getFetchWooCommerce } from "@/utils";
 import { jwtDecode } from "jwt-decode"
 
 export const getCustomerLogin = async(userJWT) => {
-  const decoded = jwtDecode(userJWT)
-  if (!decoded.id) return null
-
-  const endpoint = `customers/${decoded.id}`
+  try {
+    const decoded = jwtDecode(userJWT)
+    if (!decoded.id) return null
   
-  const wooCommerceProducts = await fetchWooCommerceProducts(endpoint).catch((error) =>
-    console.error(error)
-  );
-
-  if (!wooCommerceProducts) {
-    return null
+    const endpoint = `customers/${decoded.id}`
+    
+    const wooCommerceCustomer = await getFetchWooCommerce(endpoint)
+  
+    if (!wooCommerceCustomer) {
+      return null
+    }
+  
+    return wooCommerceCustomer.data 
+  } catch (error) {
+    throw new Error (error.message)
   }
-
-  return wooCommerceProducts.data
 }
 
 export const getCustomer = async(id) => {
-  const endpoint = `customers/${id}`
+  try {
+    const endpoint = `customers/${id}`
   
-  const wooCommerceProducts = await fetchWooCommerceProducts(endpoint).catch((error) =>
-    console.error(error)
-  );
-
-  if (!wooCommerceProducts) {
-    return null
+    const wooCommerceCustomer = await getFetchWooCommerce(endpoint)
+  
+    if (!wooCommerceCustomer) {
+      return null
+    }
+  
+    return wooCommerceCustomer.data 
+  } catch (error) {
+    throw new Error (error.message)
   }
-
-  return wooCommerceProducts.data
 }
