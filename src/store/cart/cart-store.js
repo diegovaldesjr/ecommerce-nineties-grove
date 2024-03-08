@@ -6,6 +6,10 @@ export const useCartStore = create(
     (set, get) => ({
       cart: [],
 
+      clearCart: () => {
+        set({cart: []})
+      },
+
       getTotalItems: () => {
         const {cart} = get()
         return cart.reduce( (total, item) => total + item.quantity, 0 )

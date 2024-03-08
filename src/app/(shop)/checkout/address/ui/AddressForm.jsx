@@ -10,7 +10,8 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 
 export const AddressForm = ({customerAddress = {}}) => {
-  const router = useRouter();
+  const router = useRouter()
+
   const {handleSubmit, register, formState: {isValid}, reset} = useForm({
     defaultValues: {
       ...customerAddress,
@@ -133,7 +134,7 @@ export const AddressForm = ({customerAddress = {}}) => {
       </div>
 
 
-      <div className="flex flex-col mb-2 sm:mb-10">
+      <div className="flex flex-col mb-2 sm:mb-10 sm:col-span-2">
         <div className="inline-flex items-center mb-4">
           <label
             className="relative flex cursor-pointer items-center rounded-full p-3"
@@ -168,7 +169,7 @@ export const AddressForm = ({customerAddress = {}}) => {
 
         <button
           className={clsx(
-            "flex w-full sm:w-1/2 justify-center",
+            "flex w-full sm:w-1/4 justify-center",
             {
             'btn-primary': isValid,
             'btn-disabled': !isValid

@@ -15,15 +15,15 @@ export default async function() {
   const customer = await getCustomer(session.user.id)
   
   const customerAddress = {
-    firstName: customer.shipping.first_name,
-    lastName: customer.shipping.last_name,
-    address: customer.shipping.address_1,
-    address2: customer.shipping.address_2,
-    postalCode: customer.shipping.postcode,
-    city: customer.shipping.city,
-    country: customer.shipping.country,
-    state: customer.shipping.state,
-    phone: customer.shipping.phone
+    firstName: customer?.shipping.first_name,
+    lastName: customer?.shipping.last_name,
+    address: customer?.shipping.address_1,
+    address2: customer?.shipping.address_2,
+    postalCode: customer?.shipping.postcode,
+    city: customer?.shipping.city,
+    country: customer?.shipping.country,
+    state: customer?.shipping.state,
+    phone: customer?.shipping.phone
   }
 
   return (
