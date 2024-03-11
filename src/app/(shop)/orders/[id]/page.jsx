@@ -3,15 +3,26 @@ import Image from "next/image";
 import { Title } from "@/components";
 import clsx from "clsx";
 import { IoCardOutline } from "react-icons/io5";
+import { getOrderById } from "@/actions";
+import { redirect } from "next/navigation";
 
 const productsInCart = [
 ]
 
-export default function({params}) {
+export default async function({params}) {
   const {id} = params
 
+  const {ok, order} = await getOrderById(id)
+  console.log(order)
+
+  if (!ok) {
+    // redirect('/')
+  }
+
+
+
   return (
-    <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
+    <div className="flex justify-center px-10 mt-14 h-screen">
       <div className="flex flex-col w-[1000px]">
         
         <Title title={`Orden #${id}`}/>

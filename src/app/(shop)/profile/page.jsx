@@ -16,7 +16,7 @@ export default async function() {
   }
 
   const customer = await getCustomer(session.user.id)
-  const orders = await getOrders(session.user.id)
+  const {orders} = await getOrders(session.user.id)
 
   return (
     <div className="px-10 mt-14 h-screen">

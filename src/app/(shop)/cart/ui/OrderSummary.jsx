@@ -26,18 +26,12 @@ export const OrderSummary = () => {
           { itemsInCart === 1 ? '1 artículo' : `${itemsInCart} artículos`}
         </span>
 
-        <span>Subtotal</span>
-        <span className="text-right">{currencyFormat(subTotal)}</span>
-
-        {/* <span>Envio</span>
-        <span className="text-right">$100</span> */}
-
-        <span className="mt-5 text-xl font-bold">Total</span>
+        <span className="mt-5 text-xl font-bold">Subtotal</span>
         <span className="mt-5 text-xl text-right font-bold">{currencyFormat(subTotal)}</span>
       </div>
 
       <div className="mt-5 mb-2 w-full">
-        <Link className="flex btn-primary justify-center" href="/checkout/address">
+        <Link className="flex btn-primary justify-center" href="/checkout">
           Checkout
         </Link>
       </div>

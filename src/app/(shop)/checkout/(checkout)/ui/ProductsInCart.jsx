@@ -6,9 +6,11 @@ import { useCartStore } from "@/store"
 import { useEffect, useState } from "react"
 import { currencyFormat } from "@/utils/currencyFormat"
 
-export const ProductsInCart = () => {
+export const ProductsInCart = ({className}) => {
   const productsInCart = useCartStore(state => state.cart)
   const [loaded, setLoaded] = useState(false)
+  
+  const {subTotal, itemsInCart} = useCartStore(state => state.getSummaryInformation())
 
   useEffect(() => {
     setLoaded(true)
@@ -19,7 +21,7 @@ export const ProductsInCart = () => {
   }
 
   return (
-    <>
+    <div className={className}>
       {
         productsInCart.map( product => (
           <div key={`${product.slug}-${product.size}`} className="flex mb-5">
@@ -28,7 +30,7 @@ export const ProductsInCart = () => {
               width={100}
               height={100}
               alt={product.slug}
-              className="mr-5 rounded"
+              className="mr-5 rounded border-4"
               style={{
                 width: '100px',
                 height: '100px'
@@ -45,6 +47,18 @@ export const ProductsInCart = () => {
           </div>
         ))
       }
-    </>
+
+      <div className="grid grid-cols-2 mt-8">
+        <span>Subtotal</span>
+        <span className="text-right">{currencyFormat(subTotal)}</span>
+
+        <span className="mt-2">Envio</span>
+        <span className="mt-2 text-right">{currencyFormat(subTotal)}</span>
+
+        <span className="mt-5 text-2xl font-semibold">Total</span>
+        <span className="mt-5 text-2xl text-right font-semibold">{currencyFormat(subTotal)}</span>
+      </div>
+
+    </div>
   )
 }

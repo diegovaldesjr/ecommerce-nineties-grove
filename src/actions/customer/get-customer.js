@@ -18,7 +18,10 @@ export const getCustomerLogin = async(userJWT) => {
   
     return wooCommerceCustomer.data 
   } catch (error) {
-    throw new Error (error.message)
+    return {
+      ok: false,
+      message: error.message
+    }
   }
 }
 
@@ -34,6 +37,9 @@ export const getCustomer = async(id) => {
   
     return wooCommerceCustomer.data 
   } catch (error) {
-    throw new Error (error.message)
+    return {
+      ok: false,
+      message: error.message
+    }
   }
 }
