@@ -5,53 +5,52 @@ import clsx from "clsx";
 import { IoCardOutline } from "react-icons/io5";
 import { getOrderById } from "@/actions";
 import { redirect } from "next/navigation";
-
-const productsInCart = [
-]
+import { currencyFormat } from "@/utils/currencyFormat";
 
 export default async function({params}) {
   const {id} = params
 
   const {ok, order} = await getOrderById(id)
-  console.log(order)
+  
+  const products = order.line_items
+  const shipping = order.shipping
+  const status = order.status === 'completed' ? true : false 
 
   if (!ok) {
-    // redirect('/')
+    redirect('/')
   }
-
-
 
   return (
     <div className="flex justify-center px-10 mt-14 h-screen">
       <div className="flex flex-col w-[1000px]">
         
-        <Title title={`Orden #${id}`}/>
+        <Title title={`Orden #${id}`} className="mb-8"/>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           
           {/* Carrito */}
-          <div className="flex flex-col mt-5">
+          <div className="flex flex-col">
             <div className={
               clsx(
-                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
+                "flex items-center py-2 px-3.5 text-xs font-bold text-white mb-5",
                 {
-                  'bg-red-500': false,
-                  'bg-green-700': true
+                  'bg-red-500': !status,
+                  'bg-green-700': status
                 }
               )
             }>
               <IoCardOutline size={30}/>
-              <span className="mx-2">Pagada</span>
+              <span className="mx-2">{status ? 'Pagada' : 'Procesando'}</span>
             </div>
 
           {
-            productsInCart.map( product => (
-              <div key={product.slug} className="flex mb-5">
+            products.map( product => (
+              <div key={product.id} className="flex mb-5">
                 <Image 
-                  src={`/products/${product.images[0]}`}
+                  src={product.image.src}
                   width={100}
                   height={100}
-                  alt={product.title}
+                  alt={product.name}
                   className="mr-5 rounded"
                   style={{
                     width: '100px',
@@ -60,9 +59,8 @@ export default async function({params}) {
                   />
 
                   <div>
-                    <p>{product.title}</p>
-                    <p>${product.price} x 3</p>
-                    <p className="font-bold">Subtotal: ${product.price}</p>
+                    <p className="font-semibold">{product.name}</p>
+                    <p>{currencyFormat(product.price)} x {product.quantity}</p>
                   </div>
               </div>
             ))
@@ -71,30 +69,31 @@ export default async function({params}) {
 
           {/* Checkout */}
           <div>
-            <div className="bg-white rounded-xl shadow-xl p-6">
-              <h2 className="text-2xl mb-2">Dirección de entrega</h2>
+            <div className="bg-white border-4 border-black p-8 h-fit">
+              <h2 className="text-3xl mb-2">Resumen de orden</h2>
+              <div className="w-full h-0.5 rounded bg-black mb-5"/>
+              
+              <h3 className="text-xl mb-2">Dirección de entrega</h3>
               <div className="mb-5">
-                <p>Direccion larga bla bla</p>
+                <p>{shipping.first_name} {shipping.last_name}</p>
+                <p>{shipping.address_1}</p>
+                <p>{shipping.address_2}</p>
+                <p>{shipping.city}, {shipping.state}, {shipping.postcode}, {shipping.country}</p>
+                <p>{shipping.phone}</p>
               </div>
-
-              <div className="w-full h-0.5 rounded bg-gray-200 mb-5">
-
-              </div>
-
-              <h2 className="text-2xl mb-2">Resumen de orden</h2>
 
               <div className="grid grid-cols-2">
-                <span>N°. Productos</span>
-                <span className="text-right">3 artículos</span>
+                {/* <span>N°. Productos</span>
+                <span className="text-right">3 artículos</span> */}
 
-                <span>Subtotal</span>
-                <span className="text-right">$100</span>
+                {/* <span>Subtotal</span>
+                <span className="text-right">$100</span> */}
 
-                <span>Envio</span>
-                <span className="text-right">$100</span>
+                {/* <span>Envio</span>
+                <span className="text-right">$100</span> */}
 
                 <span className="mt-5 text-2xl">Total:</span>
-                <span className="mt-5 text-2xl text-right">100$</span>
+                <span className="mt-5 text-2xl text-right">{currencyFormat(order.total)}</span>
               </div>
 
             </div>

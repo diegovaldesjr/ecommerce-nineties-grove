@@ -47,15 +47,15 @@ export const getOrderById = async(orderId) => {
     }
 
     const endpoint = `orders/${orderId}`
-  
     const wooCommerceOrder = await getFetchWooCommerce(endpoint)
-  
-    if (!wooCommerceOrder) {
+    
+    if (Object.keys(wooCommerceOrder.data).length === 0) {
       throw `${orderId} no existe.`
     }
 
-    if (session.user.id !== wooCommerceOrder.data.customer_id)
+    if (session.user.id != wooCommerceOrder.data.customer_id) {
       throw `${id} no es de este usuario.`
+    }
   
     return {
       ok: true,

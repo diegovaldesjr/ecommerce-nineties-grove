@@ -72,28 +72,30 @@ export const PlaceOrderForm = ({customerFormData}) => {
       <h2 className="text-3xl">Datos de envío</h2>
       <p className="mb-8">Ingrese su dirección.</p>
 
-      {/* Shipping address */}
-      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-2 sm:gap-4 sm:grid-cols-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center">
 
-        <div className="flex flex-col mb-2">
-          <span>Nombres</span>
-          <input 
-            type="text" 
-            className="p-2 border rounded-md bg-gray-200"
-            {... register('firstNameAddress', {required: true})}
-          />
+        {/* Shipping address */}
+        <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
+          <div className="flex flex-col mb-2">
+            <span>Nombres</span>
+            <input 
+              type="text" 
+              className="p-2 border rounded-md bg-gray-200"
+              {... register('firstNameAddress', {required: true})}
+            />
+          </div>
+
+          <div className="flex flex-col mb-2">
+            <span>Apellidos</span>
+            <input 
+              type="text" 
+              className="p-2 border rounded-md bg-gray-200"
+              {... register('lastNameAddress', {required: true})}
+            />
+          </div>  
         </div>
 
-        <div className="flex flex-col mb-2">
-          <span>Apellidos</span>
-          <input 
-            type="text" 
-            className="p-2 border rounded-md bg-gray-200"
-            {... register('lastNameAddress', {required: true})}
-          />
-        </div>
-
-        <div className="flex flex-col mb-2 sm:col-span-2">
+        <div className="flex flex-col mb-2 md:col-span-2">
           <span>Dirección</span>
           <input 
             type="text" 
@@ -102,7 +104,7 @@ export const PlaceOrderForm = ({customerFormData}) => {
           />
         </div>
 
-        <div className="flex flex-col mb-2 sm:col-span-2">
+        <div className="flex flex-col mb-2 md:col-span-2">
           <span>Dirección 2 (opcional)</span>
           <input 
             type="text" 
@@ -111,49 +113,53 @@ export const PlaceOrderForm = ({customerFormData}) => {
           />
         </div>
 
-        <div className="flex flex-col mb-2">
-          <span>País</span>
-          <select 
-            className="p-2 border rounded-md bg-gray-200"
-            {... register('countryAddress', {required: true})}
-          >
-            <option value=""></option>
-            {
-              countries.map((country) => (
-                <option key={country.id} value={country.id}>{country.name}</option>    
-              ))
-            }
-          </select>
+        <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
+          <div className="flex flex-col mb-2">
+            <span>País</span>
+            <select 
+              className="p-2 border rounded-md bg-gray-200"
+              {... register('countryAddress', {required: true})}
+            >
+              <option value=""></option>
+              {
+                countries.map((country) => (
+                  <option key={country.id} value={country.id}>{country.name}</option>    
+                ))
+              }
+            </select>
+          </div>
+
+          <div className="flex flex-col mb-2">
+            <span>Ciudad</span>
+            <input 
+              type="text" 
+              className="p-2 border rounded-md bg-gray-200"
+              {... register('cityAddress', {required: true})}
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col mb-2">
-          <span>Ciudad</span>
-          <input 
-            type="text" 
-            className="p-2 border rounded-md bg-gray-200"
-            {... register('cityAddress', {required: true})}
-          />
+        <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
+          <div className="flex flex-col mb-2">
+            <span>Estado o provincia</span>
+            <input 
+              type="text" 
+              className="p-2 border rounded-md bg-gray-200"
+              {... register('stateAddress', {required: true})}
+            />
+          </div>
+
+          <div className="flex flex-col mb-2">
+            <span>Código postal</span>
+            <input 
+              type="text" 
+              className="p-2 border rounded-md bg-gray-200"
+              {... register('postalCodeAddress', {required: true})}
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col mb-2">
-          <span>Estado o provincia</span>
-          <input 
-            type="text" 
-            className="p-2 border rounded-md bg-gray-200"
-            {... register('stateAddress', {required: true})}
-          />
-        </div>
-
-        <div className="flex flex-col mb-2">
-          <span>Código postal</span>
-          <input 
-            type="text" 
-            className="p-2 border rounded-md bg-gray-200"
-            {... register('postalCodeAddress', {required: true})}
-          />
-        </div>
-
-        <div className="flex flex-col mb-2 sm:col-span-2">
+        <div className="flex flex-col mb-2 md:col-span-2">
           <span>Teléfono</span>
           <input 
             type="text" 
@@ -163,7 +169,7 @@ export const PlaceOrderForm = ({customerFormData}) => {
         </div>
 
         
-        <div className="inline-flex items-center col-span-2">
+        <div className="inline-flex items-center md:col-span-2">
           <label
             className="relative flex cursor-pointer items-center rounded-full p-3"
             htmlFor="checkbox"
@@ -201,7 +207,7 @@ export const PlaceOrderForm = ({customerFormData}) => {
         </div>
 
 
-        <div className="mt-5 mb-2 sm:col-span-2">
+        <div className="mt-5 mb-2 md:col-span-2">
           <p className="mb-5">
             <span className="text-xs">
               Al hacer click en <strong>completar orden</strong>, estas aceptando nuestros <a href="#" className="underline">términos y condiciones</a>.

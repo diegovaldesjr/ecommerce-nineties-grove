@@ -42,21 +42,21 @@ export default async function() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 w-full">
 
-      {/* Checkout */}
-      <div className="p-16">
-        <PlaceOrderForm customerFormData={customerFormData} />
-      </div>
-
       {/* Carrito */}
-      <div className="flex flex-col bg-gray-100 p-16">
+      <div className="flex flex-col bg-gray-100 p-8 md:p-16 md:order-last">
         <h2 className="mb-2 text-3xl">Resumen de orden</h2>
         <span className="mb-5">
           Si quieres hacer un ajuste en tus productos puedes volver al carrito <Link href="/cart" className="underline">aqui</Link>.
         </span>
 
-        <div className="w-full h-0.5 rounded bg-gray-300 mb-5" />
+        <div className="w-full h-0.5 rounded bg-black mb-5" />
 
         <ProductsInCart className="md:pr-16" />
+      </div>
+
+      {/* Checkout */}
+      <div className="p-8 md:p-16">
+        <PlaceOrderForm customerFormData={customerFormData} />
       </div>
 
     </div>
