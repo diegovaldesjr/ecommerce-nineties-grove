@@ -21,8 +21,8 @@ export default async function({params}) {
   }
 
   return (
-    <div className="flex justify-center px-10 mt-14 h-screen">
-      <div className="flex flex-col w-[1000px]">
+    <div className="flex justify-center px-8 lg:px-64 min-h-[800px]">
+      <div className="flex flex-col w-full mt-16">
         
         <Title title={`Orden #${id}`} className="mb-8"/>
         
@@ -45,7 +45,7 @@ export default async function({params}) {
 
           {
             products.map( product => (
-              <div key={product.id} className="flex mb-5">
+              <div key={product.id} className="flex my-4">
                 <Image 
                   src={product.image.src}
                   width={100}
@@ -69,9 +69,7 @@ export default async function({params}) {
 
           {/* Checkout */}
           <div>
-            <div className="bg-white border-4 border-black p-8 h-fit">
-              <h2 className="text-3xl mb-2">Resumen de orden</h2>
-              <div className="w-full h-0.5 rounded bg-black mb-5"/>
+            <div className="bg-white px-8 h-fit">
               
               <h3 className="text-xl mb-2">Dirección de entrega</h3>
               <div className="mb-5">

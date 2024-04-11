@@ -26,8 +26,8 @@ export const OrderSummary = () => {
           { itemsInCart === 1 ? '1 artículo' : `${itemsInCart} artículos`}
         </span>
 
-        <span className="mt-2">Subtotal</span>
-        <span className="mt-2 text-xl text-right font-bold">{currencyFormat(subTotal)}</span>
+        <span className="mt-6 font-bold text-xl">Subtotal</span>
+        <span className="mt-6 text-xl text-right font-bold">{currencyFormat(subTotal)}</span>
       </div>
 
       <div className="mt-12 mb-2 w-full">

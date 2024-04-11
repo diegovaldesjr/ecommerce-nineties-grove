@@ -35,7 +35,7 @@ export default async function({params}) {
   const product = await getProductBySlug(slug)
   
   return (
-    <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div className="mt-8 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
 
       <div className="col-span-1 md:col-span-2">
         <ProductMobileSlideshow images={product.images} title={product.name} className="block md:hidden"/>
@@ -53,7 +53,6 @@ export default async function({params}) {
         
         <AddToCart product={product}/>
 
-        <h3 className="font-bold mb-2">Descripción</h3>
         <p className="font-light">
           {removeTags(product.description)}
         </p>

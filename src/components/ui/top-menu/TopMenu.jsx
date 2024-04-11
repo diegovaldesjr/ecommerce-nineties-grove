@@ -31,7 +31,7 @@ export const TopMenu = () => {
                 <IoPersonOutline className="w-6 h-6"/>
             </Link>
             <Link 
-                href={ (totalItemsInCart === 0) && loaded ? "/empty" : "/cart"} 
+                href="/cart" 
                 className="mx-2"
             >
                 <div className="relative">
