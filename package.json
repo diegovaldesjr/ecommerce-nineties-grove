@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.2.0",
     "@types/woocommerce__woocommerce-rest-api": "^1.0.5",
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "clsx": "^2.1.0",

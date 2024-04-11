@@ -40,7 +40,7 @@ export default async function() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full min-h-[800px]">
 
       {/* Carrito */}
       <div className="flex flex-col bg-gray-100 p-8 md:p-16 md:order-last">

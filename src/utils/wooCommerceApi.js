@@ -49,3 +49,12 @@ export async function createWooCommerceOrder(data) {
     throw new Error(error);
   }
 }
+
+export async function updateWooCommerceOrder(id, data) {
+  try {
+    const response = await api.put(`orders/${id}`, data);
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
