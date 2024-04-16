@@ -46,7 +46,7 @@ export const OrdersTable = ({orders = []}) => {
                 {order.shipping?.first_name} {order.shipping?.last_name}
               </td>
               <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                {order.isPaid ? (
+                {order.status !== 'pending' ? (
                   <>
                     <IoCardOutline className="text-green-800" />
                     <span className="mx-2 text-green-800">Pagada</span>

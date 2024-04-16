@@ -1,8 +1,6 @@
 import Image from "next/image";
 
-import { Title } from "@/components";
-import clsx from "clsx";
-import { IoCardOutline } from "react-icons/io5";
+import { OrderStatus, PaypalButton, Title } from "@/components";
 import { getOrderById } from "@/actions";
 import { redirect } from "next/navigation";
 import { currencyFormat } from "@/utils/currencyFormat";
@@ -14,7 +12,7 @@ export default async function({params}) {
   
   const products = order.line_items
   const shipping = order.shipping
-  const status = order.status === 'completed' ? true : false 
+  const status = order.status === 'pending' ? false : true 
 
   if (!ok) {
     redirect('/')
@@ -30,18 +28,7 @@ export default async function({params}) {
           
           {/* Carrito */}
           <div className="flex flex-col">
-            <div className={
-              clsx(
-                "flex items-center py-2 px-3.5 text-xs font-bold text-white mb-5",
-                {
-                  'bg-red-500': !status,
-                  'bg-green-700': status
-                }
-              )
-            }>
-              <IoCardOutline size={30}/>
-              <span className="mx-2">{status ? 'Pagada' : 'Procesando'}</span>
-            </div>
+            <OrderStatus status={status} />
 
           {
             products.map( product => (
@@ -80,7 +67,7 @@ export default async function({params}) {
                 <p>{shipping.phone}</p>
               </div>
 
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 mb-8">
                 {/* <span>N°. Productos</span>
                 <span className="text-right">3 artículos</span> */}
 
@@ -93,6 +80,14 @@ export default async function({params}) {
                 <span className="mt-5 text-2xl">Total:</span>
                 <span className="mt-5 text-2xl text-right">{currencyFormat(order.total)}</span>
               </div>
+
+              {
+                !status && (
+                  <PaypalButton 
+                    orderWcId={order.id}
+                  />
+                )
+              }
 
             </div>
           </div>

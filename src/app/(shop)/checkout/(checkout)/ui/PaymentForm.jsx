@@ -2,12 +2,15 @@
 
 import { PaypalButton } from "@/components"
 import { useAddressStore, useCartStore } from "@/store"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { redirect } from 'next/navigation'
 
 export const PaymentForm = () => {
   const [errorMessage, setErrorMessage] = useState('')
+  const [newOrder, setNewOrder] = useState('')
 
   const cart = useCartStore(state => state.cart)
+  const clearCart = useCartStore(state => state.clearCart)
   const productsToOrder = cart.map(product => ({
     product_id: product.id,
     quantity: product.quantity,
@@ -17,6 +20,13 @@ export const PaymentForm = () => {
   const address = useAddressStore(state => state.address)
   // TODO: total con envio
   const {subTotal} = useCartStore(state => state.getSummaryInformation())
+
+  useEffect(()=> {
+    if (newOrder) {
+      clearCart()
+      redirect(`/orders/${newOrder}`)
+    }
+  }, [newOrder])
 
   return (
     <>
@@ -42,6 +52,7 @@ export const PaymentForm = () => {
           amount={subTotal}
           orderWcId={null}
           productsToOrder={productsToOrder}
+          setNewOrder={setNewOrder}
         />
       </div>
     </>

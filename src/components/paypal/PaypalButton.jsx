@@ -1,9 +1,9 @@
 'use client'
 
-import { placeOrder, updateOrder } from "@/actions";
+import { paypalCheckPayment, placeOrder, updateOrder } from "@/actions";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
 
-export const PaypalButton = ({ orderWcId = null, amount, address = null, productsToOrder = null }) => {
+export const PaypalButton = ({ orderWcId = null, amount, address = null, productsToOrder = null, setNewOrder = null }) => {
   const [{ isPending }] = usePayPalScriptReducer();
 
   if (isPending) {
@@ -30,6 +30,7 @@ export const PaypalButton = ({ orderWcId = null, amount, address = null, product
     const transactionId = await actions.order.create({
       purchase_units: [
         {
+          invoice_id: orderId,
           amount: {
             value: `${rountedAmount}`
           }
@@ -48,10 +49,20 @@ export const PaypalButton = ({ orderWcId = null, amount, address = null, product
     return transactionId
   }
 
+  const onApprove = async(data, actions) => {
+    const details = await actions.order?.capture()
+
+    if (!details) return
+
+    const {orderId} = await paypalCheckPayment(details.id)
+  
+    if (setNewOrder) setNewOrder(orderId)
+  }
+
   return (
     <PayPalButtons 
       createOrder={createOrderPaypal}
-      // onApprove={}
+      onApprove={onApprove}
     />
   )
 }
