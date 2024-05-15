@@ -11,7 +11,11 @@ export const AddToCart = ({product}) => {
   
   const [size, setSize] = useState(sizes[0])
   const [posted, setPosted] = useState(false)
-  // const [quantity, setQuantity] = useState(1)
+
+  const textContent = {
+    selectSize: 'Debe seleccionar una talla*',
+    addToCart: 'Agregar al carrito'
+  }
 
   const addToCart = () => {
     setPosted(true)
@@ -37,17 +41,15 @@ export const AddToCart = ({product}) => {
       {
         posted && !size && (
           <span className="mt-2 text-red-500 fade-in">
-            Debe seleccionar una talla*
+            {textContent.selectSize}
           </span>
         )
       }
 
       <SizeSelector availableSizes={sizes} selectedSize={size} onSizeChanged={setSize}/>
-      {/* <QuantitySelector quantity={quantity} onQuantityChanged={setQuantity}/> */}
-      {/* <ColorSelector colors={product.colors} /> */}
       
       <button className="btn-primary mb-8" onClick={addToCart}>
-        Agregar al carrito
+        {textContent.addToCart}
       </button>
     </>
   )

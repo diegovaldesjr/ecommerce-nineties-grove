@@ -14,6 +14,8 @@ export const TopMenu = () => {
     const {data: session} = useSession()
     const isAuthenticated = !!session?.user
 
+    const title = 'Nineties Grove'
+
     useEffect(() => {
         setLoaded(true)
     }, [])
@@ -22,7 +24,7 @@ export const TopMenu = () => {
     <nav className="flex px-5 py-6 justify-between items-center w-full text-white bg-black">
         <div>
             <Link href="/">
-                <span className={`${titleFont.className} antialiased font-bold text-4xl`}>Nineties Grove</span>
+                <span className={`${titleFont.className} antialiased font-bold text-4xl`}>{title}</span>
             </Link>
         </div>
 

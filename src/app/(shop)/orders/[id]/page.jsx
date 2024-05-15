@@ -14,6 +14,12 @@ export default async function({params}) {
   const shipping = order.shipping
   const status = order.status === 'pending' ? false : true 
 
+  const textContent = {
+    title: `Orden #${id}`,
+    address: 'Dirección de entrega',
+    total: 'Total:'
+  }
+
   if (!ok) {
     redirect('/')
   }
@@ -22,7 +28,7 @@ export default async function({params}) {
     <div className="flex justify-center px-8 lg:px-64 min-h-[800px]">
       <div className="flex flex-col w-full mt-16">
         
-        <Title title={`Orden #${id}`} className="mb-8"/>
+        <Title title={textContent.title} className="mb-8"/>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           
@@ -58,7 +64,7 @@ export default async function({params}) {
           <div>
             <div className="bg-white px-8 h-fit">
               
-              <h3 className="text-xl mb-2">Dirección de entrega</h3>
+              <h3 className="text-xl mb-2">{textContent.address}</h3>
               <div className="mb-5">
                 <p>{shipping.first_name} {shipping.last_name}</p>
                 <p>{shipping.address_1}</p>
@@ -68,16 +74,7 @@ export default async function({params}) {
               </div>
 
               <div className="grid grid-cols-2 mb-8">
-                {/* <span>N°. Productos</span>
-                <span className="text-right">3 artículos</span> */}
-
-                {/* <span>Subtotal</span>
-                <span className="text-right">$100</span> */}
-
-                {/* <span>Envio</span>
-                <span className="text-right">$100</span> */}
-
-                <span className="mt-5 text-2xl">Total:</span>
+                <span className="mt-5 text-2xl">{textContent.total}</span>
                 <span className="mt-5 text-2xl text-right">{currencyFormat(order.total)}</span>
               </div>
 

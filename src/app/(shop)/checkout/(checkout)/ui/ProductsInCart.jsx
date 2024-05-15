@@ -12,6 +12,12 @@ export const ProductsInCart = ({className}) => {
   
   const {subTotal, itemsInCart} = useCartStore(state => state.getSummaryInformation())
 
+  const textContent = {
+    total: 'Total',
+    subtotal: 'Subtotal',
+    shipping: 'Envio'
+  }
+
   useEffect(() => {
     setLoaded(true)
   },[])
@@ -49,13 +55,10 @@ export const ProductsInCart = ({className}) => {
       }
 
       <div className="grid grid-cols-2 mt-8">
-        <span>Subtotal</span>
+        <span>{textContent.subtotal}</span>
         <span className="text-right">{currencyFormat(subTotal)}</span>
 
-        <span className="mt-2">Envio</span>
-        <span className="mt-2 text-right">{currencyFormat(subTotal)}</span>
-
-        <span className="mt-5 text-2xl font-semibold">Total</span>
+        <span className="mt-5 text-2xl font-semibold">{textContent.total}</span>
         <span className="mt-5 text-2xl text-right font-semibold">{currencyFormat(subTotal)}</span>
       </div>
 

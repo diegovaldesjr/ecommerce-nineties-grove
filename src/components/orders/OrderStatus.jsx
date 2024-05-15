@@ -2,6 +2,11 @@ import clsx from "clsx"
 import { IoCardOutline } from "react-icons/io5"
 
 export const OrderStatus = ({status}) => {
+  const textContent = {
+    paid: 'Pagado',
+    notPaid: 'Procesando'
+  }
+  
   return (
     <div className={
         clsx(
@@ -14,7 +19,7 @@ export const OrderStatus = ({status}) => {
       }
     >
       <IoCardOutline size={30}/>
-      <span className="mx-2">{status ? 'Pagado' : 'Procesando'}</span>
+      <span className="mx-2">{status ? textContent.paid : textContent.notPaid}</span>
     </div>
   )
 }

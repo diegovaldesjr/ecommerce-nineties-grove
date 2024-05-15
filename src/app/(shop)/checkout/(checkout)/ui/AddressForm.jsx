@@ -22,6 +22,22 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
   const [isSaveAddress, setIsSaveAddress] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
+  const textContent = {
+    title: 'Datos de envío',
+    subtitle: 'Ingrese su dirección.',
+    firstName: 'Nombres',
+    lastName: 'Apellidos',
+    address: 'Dirección',
+    address2: 'Dirección 2 (opcional)',
+    country: 'País',
+    city: 'Ciudad',
+    state: 'Estado o provincia',
+    postalCode: 'Código postal',
+    phone: 'Teléfono',
+    rememberAddress: 'Guardar dirección',
+    btnText: 'Siguiente'
+  }
+
   useEffect(() => {
     if (storeAddress.firstName) {
       reset(storeAddress)
@@ -42,15 +58,15 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
 
   return (
     <>
-      <h2 className="text-3xl">Datos de envío</h2>
-      <p className="mb-8">Ingrese su dirección.</p>
+      <h2 className="text-3xl">{textContent.title}</h2>
+      <p className="mb-8">{textContent.subtitle}</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center">
 
         {/* Shipping address */}
         <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
           <div className="flex flex-col mb-2">
-            <span>Nombres</span>
+            <span>{textContent.firstName}</span>
             <input 
               type="text" 
               className="p-2 border rounded-md bg-gray-200"
@@ -59,7 +75,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
           </div>
 
           <div className="flex flex-col mb-2">
-            <span>Apellidos</span>
+            <span>{textContent.lastName}</span>
             <input 
               type="text" 
               className="p-2 border rounded-md bg-gray-200"
@@ -69,7 +85,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
         </div>
 
         <div className="flex flex-col mb-2 md:col-span-2">
-          <span>Dirección</span>
+          <span>{textContent.address}</span>
           <input 
             type="text" 
             className="p-2 border rounded-md bg-gray-200"
@@ -78,7 +94,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
         </div>
 
         <div className="flex flex-col mb-2 md:col-span-2">
-          <span>Dirección 2 (opcional)</span>
+          <span>{textContent.address2}</span>
           <input 
             type="text" 
             className="p-2 border rounded-md bg-gray-200"
@@ -88,7 +104,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
 
         <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
           <div className="flex flex-col mb-2">
-            <span>País</span>
+            <span>{textContent.country}</span>
             <select 
               className="p-2 border rounded-md bg-gray-200"
               {... register('country', {required: true})}
@@ -103,7 +119,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
           </div>
 
           <div className="flex flex-col mb-2">
-            <span>Ciudad</span>
+            <span>{textContent.city}</span>
             <input 
               type="text" 
               className="p-2 border rounded-md bg-gray-200"
@@ -114,7 +130,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
 
         <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
           <div className="flex flex-col mb-2">
-            <span>Estado o provincia</span>
+            <span>{textContent.state}</span>
             <input 
               type="text" 
               className="p-2 border rounded-md bg-gray-200"
@@ -123,7 +139,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
           </div>
 
           <div className="flex flex-col mb-2">
-            <span>Código postal</span>
+            <span>{textContent.postalCode}</span>
             <input 
               type="text" 
               className="p-2 border rounded-md bg-gray-200"
@@ -133,7 +149,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
         </div>
 
         <div className="flex flex-col mb-2 md:col-span-2">
-          <span>Teléfono</span>
+          <span>{textContent.phone}</span>
           <input 
             type="text" 
             className="p-2 border rounded-md bg-gray-200"
@@ -170,7 +186,7 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
             </div>
           </label>
 
-          <span>Guardar dirección</span>
+          <span>{textContent.rememberAddress}</span>
         </div>
 
         <div className="mt-5 mb-2 md:col-span-2">
@@ -187,10 +203,9 @@ export const AddressForm = ({customerFormData, session, setStep}) => {
             disabled={isSaveAddress && !isValid}
             type="submit"
           >
-            Siguiente
+            {textContent.btnText}
           </button>
         </div>
-
       </form> 
     </>
   )

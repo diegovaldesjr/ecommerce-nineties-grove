@@ -1,10 +1,11 @@
 import { clsx } from 'clsx';
 
 export const SizeSelector = ({availableSizes, selectedSize = null, onSizeChanged}) => {
+  const title = 'Tallas disponibles'
 
   return (
     <div className="my-5">
-      <h3 className="font-bold mb-4">Tallas disponibles</h3>
+      <h3 className="font-bold mb-4">{title}</h3>
 
       <div className="flex">
         {

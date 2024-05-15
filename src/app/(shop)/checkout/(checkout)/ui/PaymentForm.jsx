@@ -21,6 +21,11 @@ export const PaymentForm = () => {
   // TODO: total con envio
   const {subTotal} = useCartStore(state => state.getSummaryInformation())
 
+  const textContent = {
+    title: 'Pago',
+    payDescription: 'Serás redirigido a una página donde podrás completar tu compar de forma segura.'
+  }
+
   useEffect(()=> {
     if (newOrder) {
       clearCart()
@@ -31,18 +36,14 @@ export const PaymentForm = () => {
   return (
     <>
       <div className="col-span-2">
-        <h2 className="text-3xl">Pago</h2>
-        {/* <p className="mb-8">Ingrese información de facturación.</p> */}
+        <h2 className="text-3xl">{textContent.title}</h2>
       </div> 
 
       <div className="mt-5 mb-2 md:col-span-2">
         <p className="mb-5">
           <span className="text-xs">
-            Serás redirigido a una página donde podrás completar tu compar de forma segura.
+            {textContent.payDescription}
           </span>
-          {/* <span className="text-xs">
-            Al hacer click en <strong>completar orden</strong>, estas aceptando nuestros <a href="#" className="underline">términos y condiciones</a>.
-          </span> */}
         </p>
 
         <p className="text-red-500">{errorMessage}</p>

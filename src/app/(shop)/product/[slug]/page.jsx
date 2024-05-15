@@ -6,14 +6,8 @@ import { titleFont } from "@/config/fonts";
 import { currencyFormat } from "@/utils/currencyFormat";
 
 export async function generateMetadata( { params }, parent ) {
-  // read route params
   const slug = params.slug
- 
-  // fetch data
   const product = await getProductBySlug(slug)
- 
-  // optionally access and extend (rather than replace) parent metadata
-  // const previousImages = (await parent).openGraph?.images || []
  
   return {
     title: product?.name ?? 'Producto no encontrado',
@@ -33,6 +27,9 @@ const removeTags = (str) => {
 export default async function({params}) {
   const {slug} = params
   const product = await getProductBySlug(slug)
+  const textContent = {
+    shippingCost: 'Los gastos de envío se calculan en la pantalla de pagos.'
+  }
   
   return (
     <div className="mt-8 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -49,7 +46,7 @@ export default async function({params}) {
           {product.name}
         </h1>
         <p className="text-lg font-bold mb-0">{currencyFormat(product.price)}</p>
-        <p className="text-sm font-semibold mb-5">Los gastos de envío se calculan en la pantalla de pagos.</p>
+        <p className="text-sm font-semibold mb-5">{textContent.shippingCost}</p>
         
         <AddToCart product={product}/>
 

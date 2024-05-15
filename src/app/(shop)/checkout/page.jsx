@@ -39,14 +39,20 @@ export default async function() {
     emailBilling: customer?.billing?.email
   }
 
+  const textContent = {
+    title: 'Resumen de orden',
+    here: 'aqui',
+    cartEdit: 'Si quieres hacer un ajuste en tus productos puedes volver al carrito'
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 w-full min-h-[800px]">
 
       {/* Carrito */}
       <div className="flex flex-col bg-gray-100 p-8 md:p-16 md:order-last">
-        <h2 className="mb-2 text-3xl">Resumen de orden</h2>
+        <h2 className="mb-2 text-3xl">{textContent.title}</h2>
         <span className="mb-5">
-          Si quieres hacer un ajuste en tus productos puedes volver al carrito <Link href="/cart" className="underline">aqui</Link>.
+          {textContent.cartEdit} <Link href="/cart" className="underline">{textContent.here}</Link>.
         </span>
 
         <div className="w-full h-0.5 rounded bg-black mb-5" />

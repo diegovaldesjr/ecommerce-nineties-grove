@@ -2,6 +2,20 @@ import Link from "next/link"
 import { IoCardOutline } from "react-icons/io5"
 
 export const OrdersTable = ({orders = []}) => {
+  const textContent = {
+    tableTitles: {
+      id: '#ID',
+      name: 'Nombre completo',
+      status: 'Estado',
+      options: 'Opciones'
+    },
+    tableBody: {
+      statusPaid: 'Pagado',
+      statusNotPaid: 'No Pagada',
+      order: 'Ver orden'
+    }
+  }
+
   return (
     <div className="my-10 border-4 border-black">
       <table className="min-w-full">
@@ -11,25 +25,25 @@ export const OrdersTable = ({orders = []}) => {
               scope="col"
               className="text-sm font-medium text-white px-6 py-4 text-left"
             >
-              #ID
+              {textContent.tableTitles.id}
             </th>
             <th
               scope="col"
               className="text-sm font-medium text-white px-6 py-4 text-left"
             >
-              Nombre completo
+              {textContent.tableTitles.name}
             </th>
             <th
               scope="col"
               className="text-sm font-medium text-white px-6 py-4 text-left"
             >
-              Estado
+              {textContent.tableTitles.status}
             </th>
             <th
               scope="col"
               className="text-sm font-medium text-white px-6 py-4 text-left"
             >
-              Opciones
+              {textContent.tableTitles.options}
             </th>
           </tr>
         </thead>
@@ -49,18 +63,18 @@ export const OrdersTable = ({orders = []}) => {
                 {order.status !== 'pending' ? (
                   <>
                     <IoCardOutline className="text-green-800" />
-                    <span className="mx-2 text-green-800">Pagada</span>
+                    <span className="mx-2 text-green-800">{textContent.tableBody.statusPaid}</span>
                   </>
                 ) : (
                   <>
                     <IoCardOutline className="text-red-800" />
-                    <span className="mx-2 text-red-800">No Pagada</span>
+                    <span className="mx-2 text-red-800">{textContent.tableBody.statusNotPaid}</span>
                   </>
                 )}
               </td>
               <td className="text-sm text-gray-900 font-light px-6 ">
                 <Link href={`/orders/${ order.id }`} className="hover:underline">
-                  Ver orden
+                {textContent.tableBody.order}
                 </Link>
               </td>
             </tr>

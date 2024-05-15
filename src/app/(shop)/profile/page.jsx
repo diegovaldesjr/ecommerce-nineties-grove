@@ -18,9 +18,11 @@ export default async function() {
   const customer = await getCustomer(session.user.id)
   const {orders} = await getOrders(session.user.id)
 
+  const title = 'Mi cuenta'
+
   return (
     <div className="px-10 mt-14 h-screen">
-      <Title title="Mi cuenta" className="px-8 sm:px-0" />
+      <Title title={title} className="px-8 sm:px-0" />
 
       <ProfileTable user={customer} />
       <OrdersTable orders={orders} />

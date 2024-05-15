@@ -13,6 +13,8 @@ export const ProductsInCart = () => {
   const productsInCart = useCartStore(state => state.cart)
   const [loaded, setLoaded] = useState(false)
 
+  const btnText = 'Remover'
+
   useEffect(() => {
     setLoaded(true)
   },[])
@@ -46,7 +48,7 @@ export const ProductsInCart = () => {
                 <p>{currencyFormat(product.price)}</p>
                 <QuantitySelector className="mt-2" quantity={ product.quantity} onQuantityChanged={quantity => updateProductQuantity(product, quantity)}/>
                 <button className="underline mt-3" onClick={() => removeProduct(product)}>
-                  Remover
+                  {btnText}
                 </button>
               </div>
           </div>
