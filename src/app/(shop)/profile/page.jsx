@@ -15,7 +15,7 @@ export default async function() {
     redirect('/')
   }
 
-  const customer = await getCustomer(session.user.id)
+  const {customer} = await getCustomer(session.user.id)
   const {orders} = await getOrders(session.user.id)
 
   const title = 'Mi cuenta'

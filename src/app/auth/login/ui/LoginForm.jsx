@@ -11,6 +11,13 @@ export const LoginForm = () => {
   const [state, dispatch] = useFormState(authenticate, undefined);
   const router = useRouter()
 
+  const textContent = {
+    email: 'Correo electrónico',
+    password: 'Contraseña',
+    singup: 'Crear una nueva cuenta',
+    error: 'Correo o contraseña incorrectos.'
+  }
+
   useEffect(() => {
     if (state === 'Success')
       window.location.replace('/')
@@ -19,12 +26,12 @@ export const LoginForm = () => {
   return (
     <form action={dispatch} className="flex flex-col">
 
-      <label htmlFor="email">Correo electrónico</label>
+      <label htmlFor="email">{textContent.email}</label>
       <input
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="email" name="email" />
 
-      <label htmlFor="email">Contraseña</label>
+      <label htmlFor="email">{textContent.password}</label>
       <input
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="password" name="password" />
@@ -32,7 +39,7 @@ export const LoginForm = () => {
       <div className="flex h-8 items-end space-x-1" aria-live='polite' aria-atomic="true">
         {state === 'Invalid credentials.' && (
           <div className="mb-2">
-            <p className="text-sm text-red-500">Correo o contraseña incorrectos.</p>
+            <p className="text-sm text-red-500">{textContent.error}</p>
           </div>
         )}
       </div>
@@ -49,7 +56,7 @@ export const LoginForm = () => {
       <Link
         href="/auth/new-account" 
         className="btn-secondary text-center">
-        Crear una nueva cuenta
+        {textContent.singup}
       </Link>
 
       </form>

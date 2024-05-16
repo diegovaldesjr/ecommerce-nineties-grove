@@ -80,8 +80,8 @@ const getPaypalBearerToken = async() => {
   };
 
   try {
-    const res = await fetch(oauth2Url, requestOptions).then( r=> r.json())
-    return res.access_token 
+    const {access_token} = await fetch(oauth2Url, requestOptions).then( r=> r.json())
+    return access_token 
   } catch (error) {
     console.log(error)
     return null

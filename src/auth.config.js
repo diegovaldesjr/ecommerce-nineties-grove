@@ -59,7 +59,7 @@ export const authConfig = {
         //Validar usuario
         const userJWT = await getJWTUser(email, password)
         if (!userJWT) return null
-        const user = await getCustomerLogin(userJWT)
+        const {customer:user} = await getCustomerLogin(userJWT)
         
         //retornar info de usuario
         const { role, username, avatar_url, meta_data, _links, is_paying_customer, ...rest } = user

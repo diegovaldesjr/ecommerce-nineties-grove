@@ -1,6 +1,6 @@
 'use server'
 
-import { getFetchWooCommerce } from "@/utils";
+import { getFetchWooCommerce } from "@/actions";
 import { jwtDecode } from "jwt-decode"
 
 export const getCustomerLogin = async(userJWT) => {
@@ -13,10 +13,13 @@ export const getCustomerLogin = async(userJWT) => {
     const wooCommerceCustomer = await getFetchWooCommerce(endpoint)
   
     if (!wooCommerceCustomer) {
-      return null
+      throw 'No se encontro usuario.'
     }
   
-    return wooCommerceCustomer.data 
+    return {
+      ok: true,
+      customer: wooCommerceCustomer.data
+    }
   } catch (error) {
     return {
       ok: false,
@@ -32,10 +35,13 @@ export const getCustomer = async(id) => {
     const wooCommerceCustomer = await getFetchWooCommerce(endpoint)
   
     if (!wooCommerceCustomer) {
-      return null
+      throw 'No se encontro usuario.'
     }
   
-    return wooCommerceCustomer.data 
+    return {
+      ok: true,
+      customer: wooCommerceCustomer.data
+    }
   } catch (error) {
     return {
       ok: false,

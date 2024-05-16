@@ -3,7 +3,7 @@ import Image from "next/image";
 import { OrderStatus, PaypalButton, Title } from "@/components";
 import { getOrderById } from "@/actions";
 import { redirect } from "next/navigation";
-import { currencyFormat } from "@/utils/currencyFormat";
+import { currencyFormat } from "@/utils";
 
 export default async function({params}) {
   const {id} = params

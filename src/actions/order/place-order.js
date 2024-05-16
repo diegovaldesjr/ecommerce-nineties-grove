@@ -1,7 +1,7 @@
 'use server'
 
 import { auth } from "@/auth.config"
-import { createWooCommerceOrder } from "@/utils"
+import { createWooCommerceOrder } from "@/actions"
 
 export const placeOrder = async(address, productsToOrder) => {
   try {
@@ -37,13 +37,15 @@ export const placeOrder = async(address, productsToOrder) => {
     const res = await createWooCommerceOrder(data)
     const {id} = res.data
 
-
     return {
       ok: true,
       message: 'Orden creada.',
       orderId: id
     }
   } catch (error) {
-    throw new Error (error.message)
+    return {
+      ok: false,
+      message: error.message
+    }
   }
 }

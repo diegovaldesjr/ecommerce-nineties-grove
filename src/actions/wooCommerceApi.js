@@ -1,3 +1,5 @@
+'use server'
+
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
 // initialise the WooCommerceRestApi //

@@ -1,6 +1,6 @@
 'use server'
 
-import { getFetchWooCommerce } from "@/utils";
+import { getFetchWooCommerce } from "@/actions";
 
 export const getProductsByDrop = async() => {
   try {
@@ -12,12 +12,18 @@ export const getProductsByDrop = async() => {
     );
   
     if (!wooCommerceProducts) {
-      return null
+      throw 'No hay productos registrados.'
     }
   
-    return wooCommerceProducts.data 
+    return {
+      ok: true,
+      products: wooCommerceProducts.data
+    }
   } catch (error) {
-    throw new Error (error.message)
+    return {
+      ok: false,
+      message: error.message
+    }
   }
 }
 
@@ -31,11 +37,17 @@ export const getProductBySlug = async(slug) => {
     );
   
     if (!wooCommerceProducts) {
-      return null
+      throw 'No hay productos registrados.'
     }
   
-    return wooCommerceProducts.data[0] 
+    return {
+      ok: true,
+      product: wooCommerceProducts.data[0]
+    }
   } catch (error) {
-    throw new Error (error.message)
+    return {
+      ok: false,
+      message: error.message
+    }
   }
 }

@@ -12,6 +12,15 @@ export const RegisterForm = () => {
   const [pending, setPending] = useState(false)
   const {register, handleSubmit, formState: {errors}} = useForm()
 
+  const textContent = {
+    name: 'Nombre',
+    lastName: 'Apellido',
+    email: 'Correo electrónico',
+    password: 'Contraseña',
+    login: 'Ingresar',
+    btnText: 'Crear cuenta'
+  }
+
   const onSubmit = async(data) => {
     setErrorMessage('')
     setPending(true)
@@ -29,7 +38,7 @@ export const RegisterForm = () => {
   return (
     <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
 
-      <label htmlFor="email">Nombre</label>
+      <label htmlFor="email">{textContent.name}</label>
       <input
         className={
           clsx(
@@ -42,7 +51,7 @@ export const RegisterForm = () => {
         {...register('name', {required: true})}
       />
 
-      <label htmlFor="email">Apellido</label>
+      <label htmlFor="email">{textContent.lastName}</label>
       <input
         className={
           clsx(
@@ -55,7 +64,7 @@ export const RegisterForm = () => {
         {...register('lastName', {required: true})}
       />
 
-      <label htmlFor="email">Correo electrónico</label>
+      <label htmlFor="email">{textContent.email}</label>
       <input
         className={
           clsx(
@@ -69,7 +78,7 @@ export const RegisterForm = () => {
         {...register('email', {required: true, pattern: '^[^@]+@[^@]+\.[a-zA-Z]{2,}$' })}
       />
 
-      <label htmlFor="email">Contraseña</label>
+      <label htmlFor="email">{textContent.password}</label>
       <input
         className={
           clsx(
@@ -95,7 +104,7 @@ export const RegisterForm = () => {
         }
         disabled={pending}
       >
-        Crear cuenta
+        {textContent.btnText}
       </button>
 
       {/* divisor line */ }
@@ -108,7 +117,7 @@ export const RegisterForm = () => {
       <Link
         href="/auth/login" 
         className="btn-secondary text-center">
-        Ingresar
+        {textContent.login}
       </Link>
 
     </form>

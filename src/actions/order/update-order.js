@@ -1,7 +1,7 @@
 'use server'
 
 import { auth } from "@/auth.config"
-import { updateWooCommerceOrder } from "@/utils"
+import { updateWooCommerceOrder } from "@/actions"
 
 export const updateOrder = async(orderId, data) => {
   try {

@@ -1,6 +1,6 @@
 'use server'
 
-import { updateWooCommerceCustomer } from "@/utils"
+import { updateWooCommerceCustomer } from "@/actions"
 
 export const setCustomerAddress = async(userId, address) => {
   try {
@@ -26,6 +26,9 @@ export const setCustomerAddress = async(userId, address) => {
       // address: address
     }
   } catch (error) {
-    throw new Error (error.message)
+    return {
+      ok: false,
+      message: error.message
+    }
   }
 }

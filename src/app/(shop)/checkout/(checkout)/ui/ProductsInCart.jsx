@@ -4,7 +4,7 @@ import { SkeletonText } from "@/components"
 import Image from "next/image"
 import { useCartStore } from "@/store"
 import { useEffect, useState } from "react"
-import { currencyFormat } from "@/utils/currencyFormat"
+import { currencyFormat } from "@/utils"
 
 export const ProductsInCart = ({className}) => {
   const productsInCart = useCartStore(state => state.cart)

@@ -1,6 +1,6 @@
 'use server'
 
-import { createWooCommerceCustomer } from "@/utils";
+import { createWooCommerceCustomer } from "@/actions";
 
 const createCustomer = async(data) => {
   try {
@@ -18,20 +18,30 @@ const createCustomer = async(data) => {
       return null
     }
 
-    return customer.data
+    return {
+      ok: true,
+      customer: customer.data
+    }
   } catch (error) {
-    throw new Error(error.message)
+    return {
+      ok: false,
+      message: error.message
+    }
   }
 }
 
 export const registerUser = async(name, lastName, email, password) => {
   try {
-    const user = await createCustomer({
+    const {customer: user, ok} = await createCustomer({
       name: name,
       lastName: lastName,
       email: email,
       password: password
     })
+
+    if (!ok) {
+      throw 'Error al crear usuario (posiblemente correo ya registrado).'
+    }
 
     return {
       ok: true,
@@ -39,10 +49,9 @@ export const registerUser = async(name, lastName, email, password) => {
       message: 'Usuario creado.'
     }
   } catch(error){
-    console.error(error)
     return {
       ok: false,
-      message: 'Correo ya registrado.'
+      message: error.message
     }
   }
 }

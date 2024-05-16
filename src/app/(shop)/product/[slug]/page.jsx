@@ -3,11 +3,11 @@ import { getProductBySlug } from "@/actions";
 import { ProductMobileSlideshow, ProductSlideshow } from "@/components";
 import { AddToCart } from "./ui/AddToCart";
 import { titleFont } from "@/config/fonts";
-import { currencyFormat } from "@/utils/currencyFormat";
+import { currencyFormat } from "@/utils";
 
 export async function generateMetadata( { params }, parent ) {
   const slug = params.slug
-  const product = await getProductBySlug(slug)
+  const {product} = await getProductBySlug(slug)
  
   return {
     title: product?.name ?? 'Producto no encontrado',
@@ -26,7 +26,7 @@ const removeTags = (str) => {
 
 export default async function({params}) {
   const {slug} = params
-  const product = await getProductBySlug(slug)
+  const {product} = await getProductBySlug(slug)
   const textContent = {
     shippingCost: 'Los gastos de envío se calculan en la pantalla de pagos.'
   }

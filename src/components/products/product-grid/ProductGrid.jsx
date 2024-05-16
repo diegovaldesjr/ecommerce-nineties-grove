@@ -14,7 +14,7 @@ export const ProductGrid = ({className}) => {
   }, [])
 
   const getProducts = async() => {
-    const allProducts = await getProductsByDrop()
+    const {products: allProducts} = await getProductsByDrop()
     setProducts(allProducts)
     setIsLoading(false)
   }

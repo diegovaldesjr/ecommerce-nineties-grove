@@ -14,7 +14,7 @@ export default async function() {
     )
   }
 
-  const customer = await getCustomer(session.user.id)
+  const {customer} = await getCustomer(session.user.id)
   
   const customerFormData = {
     firstNameAddress: customer?.shipping?.first_name,

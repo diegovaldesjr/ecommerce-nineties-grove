@@ -1,7 +1,7 @@
 'use server'
 
 import { auth } from "@/auth.config"
-import { getFetchWooCommerce } from "@/utils"
+import { getFetchWooCommerce } from "@/actions"
 
 export const getOrders = async(userId) => {
   try {
