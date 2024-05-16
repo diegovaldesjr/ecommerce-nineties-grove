@@ -1,28 +1,60 @@
-## Correr en dev
+# Ejemplo de Tienda Online con Next.js y Wordpress para Marca de Ropa [Nineties Grove](https://www.ninetiesgrove.com/)
 
-1. Clonar repositorio
-2. Variables de entorno ```.env.local```
-3. Instalar dependencias ```npm install```
-4. Levantar sitio de Wordpress
-5. Correr proyecto ```npm run dev```
+Este proyecto es una aplicación de tienda online para mi marca de ropa desarrollada con Next.js para el front-end y WordPress para el backend. Utiliza la API de WordPress para gestionar el contenido y los productos de la tienda.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Características
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+-   **Front-end en Next.js:** La interfaz de usuario de la tienda está construida con Next.js, que ofrece un enfoque moderno y eficiente para el desarrollo de aplicaciones web.
+    
+-   **Backend en WordPress:** WordPress se utiliza como backend para administrar el contenido de la tienda, incluidos los productos, categorías, páginas, etc.
+    
+-   **Integración con la API de WordPress:** Se utiliza la API REST de WordPress para obtener y gestionar los datos de la tienda desde el front-end de Next.js.
+    
+-   **Funcionalidades de una Tienda Online:** Incluye funcionalidades típicas de una tienda online, como la visualización de productos, búsqueda, filtrado, carrito de compras y proceso de pago.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Ejecutar proyecto
 
-## Learn More
+Para levantar el proyecto sigue los siguientes pasos:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clona el Repositorio**: Utiliza el comando `git clone` para clonar el repositorio del proyecto en tu terminal:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git clone <url_del_repositorio>
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2.  **Navega al Directorio del Proyecto**: Una vez que hayas clonado el repositorio, navega al directorio del proyecto utilizando el siguiente comando:
 
-## Deploy on Vercel
+```bash
+cd nombre_del_directorio
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Instala las Dependencias**: Para instalar las dependencias del proyecto, ejecuta el siguiente comando en tu terminal:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm install
+```
+
+4.  **Setear variables de entorno**:  Abre el archivo `.env.local` y configura las variables de entorno:
+
+```bash
+NEXT_PUBLIC_WORDPRESS_SITE_URL=
+WOOCOMMERCE_KEY=
+WOOCOMMERCE_SECRET=
+DROP1_CATEGORY_ID=
+AUTH_SECRET=
+
+# Paypal
+# https://developer.paypal.com/dashboard/
+NEXT_PUBLIC_PAYPAL_CLIENT_ID=
+PAYPAL_SECRET=
+# POST
+PAYPAL_OAUTH_URL=
+#GET
+PAYPAL_ORDERS_URL=
+```
+
+5.  **Iniciar aplicación**: Para iniciar el proyecto, ejecuta el siguiente comando en tu terminal:
+
+```bash
+npm run dev
+```
